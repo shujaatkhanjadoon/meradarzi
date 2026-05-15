@@ -2,22 +2,23 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link                    from 'next/link'
-import { Scissors, Menu, X }   from 'lucide-react'
-import { cn }                  from '@/lib/utils'
+import Link from 'next/link'
+import { Scissors, Menu, X } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 const NAV_LINKS = [
-  { href: '/#features',    label: 'Features'    },
-  { href: '/#how-it-works',label: 'How It Works'},
-  { href: '/#pricing',     label: 'Pricing'     },
-  { href: '/#faq',         label: 'FAQ'         },
-  { href: '/about',        label: 'About'       },
-  { href: '/contact',      label: 'Contact'     },
+  { href: '/#features', label: 'Features' },
+  { href: '/#how-it-works', label: 'How It Works' },
+  { href: '/#pricing', label: 'Pricing' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export function Navbar() {
-  const [menuOpen,   setMenuOpen]   = useState(false)
-  const [scrolled,   setScrolled]   = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -37,11 +38,12 @@ export function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center
-                            justify-center shadow-lg shadow-blue-600/25">
-              <Scissors size={18} className="text-white" strokeWidth={1.8} />
-            </div>
-            <span className="text-lg font-bold text-slate-900">Mera Darzi</span>
+            <Image
+              src="/logo.png"
+              alt="MeraDarzi Logo"
+              width={150}
+              height={40}
+            />
           </Link>
 
           {/* Desktop nav */}
