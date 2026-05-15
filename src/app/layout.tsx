@@ -5,6 +5,8 @@ import { Footer } from "@/components/landing/Footer";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
+<meta name="apple-mobile-web-app-title" content="Mera Darzi" />
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -12,7 +14,9 @@ const poppins = Poppins({
   display: "swap",
 });
 
+
 export const metadata: Metadata = {
+  
   title: {
     default: "Mera Darzi",
     template: "%s | Mera Darzi",
