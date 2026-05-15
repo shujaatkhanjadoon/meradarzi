@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Heart, Shield, Zap, Users, Scissors, ArrowRight } from 'lucide-react'
+import { Heart, Shield, Zap, Users, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
@@ -15,13 +15,13 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="bg-linear-to-br from-slate-900 to-blue-950 py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center
-                          justify-center mx-auto mb-6 shadow-2xl shadow-blue-900/50">
+          <div className="rounded-xl flex items-center
+                          justify-center mx-auto mb-6">
             <Image 
-            src="/web-app-manifest-192x192.png"
+            src="/icon.svg"
               alt="MeraDarzi Icon"
-              width={40}
-              height={40}
+              width={64}
+              height={64}
             />
           </div>
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-5">

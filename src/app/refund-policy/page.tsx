@@ -96,11 +96,11 @@ export default function RefundPolicyPage() {
             <h2 className="text-xl font-bold text-slate-900 mb-3">5. Contact</h2>
             <p>
               Refund ke liye:{' '}
-              <a href="mailto:support@mydarzi.app"
+              <a href="mailto:darzihub9@gmail.com"
                 className="text-blue-600 hover:underline">
-                support@mydarzi.app
+                darzihub9@gmail.com
               </a>
-              {' '}ya WhatsApp: {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '+92 313 5931459'}
+              {' '}ya WhatsApp: {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '+92 313 5634667'}
             </p>
           </div>
         </div>

@@ -1018,11 +1018,11 @@ function CTABanner() {
         <p className="text-slate-500 text-sm mt-6">
           Questions? WhatsApp:{' '}
           <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '923000000000'}`}
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '923135634667'}`}
             target="_blank" rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '+92 300 0000000'}
+            {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135634667'}
           </a>
         </p>
       </div>
@@ -1068,22 +1068,22 @@ function ContactSection() {
                 {
                   icon: MessageCircle,
                   label: 'WhatsApp',
-                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '+92 300 0000000',
-                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '923000000000'}`,
+                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135634667',
+                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '923135634667'}`,
                   color: 'bg-green-100 text-green-600',
                 },
                 {
                   icon: Mail,
                   label: 'Email',
-                  value: 'support@meradarzi.app',
-                  href:  'mailto:support@meradarzi.app',
+                  value: 'support@meradarzi.pk',
+                  href:  'mailto:darzihub9@gmail.com',
                   color: 'bg-blue-100 text-blue-600',
                 },
                 {
                   icon: Globe,
                   label: 'Website',
-                  value: 'meradarzi.vercel.app',
-                  href:  'https://meradarzi.vercel.app',
+                  value: 'meradarzi.pk',
+                  href:  'https://www.meradarzi.pk',
                   color: 'bg-purple-100 text-purple-600',
                 },
               ].map(c => (

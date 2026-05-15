@@ -78,7 +78,7 @@ Each service has its own privacy policy and we only share data necessary for fun
 - Delete your account and all data
 - Opt out of non-essential communications
 
-Contact us at support@mydarzi.app to exercise these rights.`,
+Contact us at darzihub9@gmail.com to exercise these rights.`,
     },
     {
       title: '8. Children\'s Privacy',
@@ -90,7 +90,7 @@ Contact us at support@mydarzi.app to exercise these rights.`,
     },
     {
       title: '10. Contact',
-      content: 'For privacy concerns: support@mydarzi.app or WhatsApp: +92-313-5931459',
+      content: 'For privacy concerns: darzihub9@gmail.com or WhatsApp: +92-313-5634667',
     },
   ]
 

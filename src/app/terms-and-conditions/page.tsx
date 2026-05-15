@@ -80,7 +80,7 @@ Refunds: See our Refund Policy page.`,
     },
     {
       title: '11. Contact',
-      content: `For terms-related questions: support@mydarzi.app`,
+      content: `For terms-related questions: darzihub9@gmail.com`,
     },
   ]
 
