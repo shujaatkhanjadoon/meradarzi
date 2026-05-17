@@ -26,8 +26,8 @@ export default function ContactPage() {
               {
                 icon:  MessageCircle,
                 title: 'WhatsApp',
-                value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135634667',
-                href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '923135634667'}?text=Assalam%20o%20Alaikum`,
+                value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP,
+                href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK}?text=Assalam%20o%20Alaikum`,
                 color: 'bg-green-100 text-green-600',
                 desc:  'Fastest response',
               },

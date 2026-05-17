@@ -42,7 +42,7 @@ export function Navbar() {
               src="/logo.png"
               alt="MeraDarzi Logo"
               width={150}
-              height={40}
+              height={25}
             />
           </Link>
 

@@ -1068,8 +1068,8 @@ function ContactSection() {
                 {
                   icon: MessageCircle,
                   label: 'WhatsApp',
-                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135634667',
-                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '923135634667'}`,
+                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP,
+                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK}`,
                   color: 'bg-green-100 text-green-600',
                 },
                 {
