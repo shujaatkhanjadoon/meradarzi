@@ -1018,11 +1018,11 @@ function CTABanner() {
         <p className="text-slate-500 text-sm mt-6">
           Questions? WhatsApp:{' '}
           <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '923135634667'}`}
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135931459'}`}
             target="_blank" rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135634667'}
+            {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135931459'}
           </a>
         </p>
       </div>
@@ -1068,8 +1068,8 @@ function ContactSection() {
                 {
                   icon: MessageCircle,
                   label: 'WhatsApp',
-                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP,
-                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK}`,
+                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135931459',
+                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135931459'}`,
                   color: 'bg-green-100 text-green-600',
                 },
                 {

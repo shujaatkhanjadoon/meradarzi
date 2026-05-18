@@ -16,29 +16,68 @@ const poppins = Poppins({
 
 
 export const metadata: Metadata = {
-  
   title: {
-    default: "Mera Darzi",
+    default:
+      "Mera Darzi - Best Tailor Management Software in Pakistan",
     template: "%s | Mera Darzi",
   },
+
   description:
-    "Pakistan ka pehla tailor management app orders, measurements, payments. Offline bhi kaam kare.",
-  keywords: ["tailor", "darzi", "pakistan", "order management", "kapra"],
+    "Mera Darzi is Pakistan’s leading tailor management software for darzis and boutiques. Manage orders, customer measurements, payments, stitching records, and delivery tracking all in one app.",
+
+  keywords: [
+    "tailor management software",
+    "darzi app pakistan",
+    "boutique management system",
+    "tailor shop software",
+    "measurement management app",
+    "stitching order management",
+    "fashion boutique software",
+    "customer measurement app",
+    "tailor business pakistan",
+    "meradarzi",
+    "darzi software",
+    "tailor POS system",
+  ],
+
   openGraph: {
-    title: "Mera Darzi",
-    description: "Pakistan ka pehla tailor management app",
-    url: "https://meradarzi.pk",
+    title:
+      "Mera Darzi - Pakistan’s #1 Tailor Management App",
+    description:
+      "Manage tailoring orders, customer measurements, payments, and delivery tracking with Mera Darzi — Pakistan’s modern tailoring management solution.",
+
+    url: "https://meradarzi.pk/",
     siteName: "Mera Darzi",
-    locale: "ur_PK",
+    locale: "en_PK",
     type: "website",
   },
+
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Mera Darzi - Tailor Management Software Pakistan",
+    description:
+      "All-in-one tailoring management system for darzis and boutiques in Pakistan.",
+  },
+
   manifest: "/manifest.json",
+
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "Mera Darzi",
   },
-  formatDetection: { telephone: false },
+
+  formatDetection: {
+    telephone: false,
+  },
+
+  metadataBase: new URL("https://meradarzi.pk"),
+
+  alternates: {
+    canonical: "/",
+  },
+
   icons: {
     icon: [
       { url: "/icons/icon-32.png", sizes: "32x32" },
