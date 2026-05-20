@@ -50,6 +50,14 @@ export const metadata: Metadata = {
     siteName: "Mera Darzi",
     locale: "en_PK",
     type: "website",
+    images: [
+      {
+        url: '/og-images/MeraDarzi.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Mera Darzi',
+      },
+    ],
   },
 
   twitter: {
@@ -58,6 +66,7 @@ export const metadata: Metadata = {
       "Mera Darzi - Tailor Management Software Pakistan",
     description:
       "All-in-one tailoring management system for darzis and boutiques in Pakistan.",
+      images: ['/og-images/MeraDarzi.jpg'],
   },
 
   manifest: "/manifest.json",
