@@ -8,11 +8,20 @@ const LINKS = {
     { label: 'How It Works', href: '/#how-it-works' },
     { label: 'Pricing', href: '/#pricing' },
     { label: 'FAQ', href: '/#faq' },
+    { label: 'App Login', href: 'https://app.meradarzi.pk/' },
   ],
   Company: [
     { label: 'About Us', href: '/about' },
     { label: 'Contact', href: '/contact' },
     { label: 'Blog', href: '#' },
+  ],
+  "Our Cities": [
+    { label: 'Lahore', href: '/cities/lahore' },
+    { label: 'Karachi', href: '/cities/karachi' },
+    { label: 'Islamabad', href: '/cities/islamabad' },
+    { label: 'Rawalpindi', href: '/cities/rawalpindi' },
+    { label: 'Faisalabad', href: '/cities/faisalabad' },
+    { label: 'All Cities', href: '/cities' },
   ],
   Legal: [
     { label: 'Privacy Policy', href: '/privacy-policy' },
@@ -59,14 +68,14 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-8 py-14 border-b border-slate-800">
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 py-14 border-b border-slate-800">
 
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex mb-5">
               <Image
                 src="/Mera-Darzi_logo.png"
-                alt="MeraDarzi Logo"
+                alt="Mera Darzi - Best Tailor Management Software in Pakistan"
                 width={150}
                 height={96}
               />

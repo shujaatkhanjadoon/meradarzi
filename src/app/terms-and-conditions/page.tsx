@@ -2,6 +2,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
+  description: 'Mera Darzi terms and conditions — service ke istemal ke qawaneen aur shartat. Account registration, payments, aur data ownership ke baare mein.',
+  keywords: ['Mera Darzi terms', 'tailor software terms Pakistan', 'service conditions'],
+  alternates: {
+    canonical: '/terms-and-conditions',
+  },
 }
 
 export default function TermsPage() {

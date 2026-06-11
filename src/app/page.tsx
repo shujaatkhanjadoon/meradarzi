@@ -1,4 +1,4 @@
-// src/app/(marketing)/page.tsx
+// src/app/page.tsx
 'use client'
 
 import { useState, useEffect, useRef} from 'react'
@@ -10,6 +10,7 @@ import {
   Clock, TrendingUp, Heart, MessageCircle, Mail, Globe,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { SoftwareAppSchema, FAQSchema, ReviewSchema } from '@/components/seo/JsonLd'
 
 // ── Intersection Observer Hook ────────────────────────────────────
 function useInView(threshold = 0.15) {
@@ -1182,6 +1183,9 @@ function ContactSection() {
 export default function LandingPage() {
   return (
     <div className="scroll-smooth">
+      <SoftwareAppSchema />
+      <ReviewSchema />
+      <FAQSchema faqs={FAQS.map(f => ({ q: f.q, a: f.a }))} />
       <Hero />
       <Features />
       <HowItWorks />

@@ -3,7 +3,18 @@ import { Mail, MessageCircle, MapPin, Clock } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Mera Darzi support se contact karein.',
+  description: 'Mera Darzi support se contact karein. WhatsApp, email, ya form ke zariye hum se baat karein. 24 ghante mein reply.',
+  keywords: ['contact Mera Darzi', 'tailor software support Pakistan', 'Mera Darzi WhatsApp', 'darzi app help'],
+  openGraph: {
+    title: 'Contact Mera Darzi - Tailor Management Software Support',
+    description: 'Get in touch with Mera Darzi support team via WhatsApp, email, or contact form.',
+    url: 'https://meradarzi.pk/contact',
+    locale: 'en_PK',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/contact',
+  },
 }
 
 export default function ContactPage() {

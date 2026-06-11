@@ -11,14 +11,26 @@ const NAV_LINKS = [
   { href: '/#features', label: 'Features' },
   { href: '/#how-it-works', label: 'How It Works' },
   { href: '/#pricing', label: 'Pricing' },
-  { href: '/#faq', label: 'FAQ' },
+  { href: '#', label: 'Cities', hasDropdown: true },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
+]
+
+const CITIES_DROPDOWN = [
+  { href: '/cities/lahore', label: 'Lahore' },
+  { href: '/cities/karachi', label: 'Karachi' },
+  { href: '/cities/islamabad', label: 'Islamabad' },
+  { href: '/cities/rawalpindi', label: 'Rawalpindi' },
+  { href: '/cities/faisalabad', label: 'Faisalabad' },
+  { href: '/cities/peshawar', label: 'Peshawar' },
+  { href: '/cities/multan', label: 'Multan' },
+  { href: '/cities', label: 'All Cities →' },
 ]
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [citiesOpen, setCitiesOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -40,23 +52,56 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
             <Image
               src="/logo.png"
-              alt="MeraDarzi Logo"
+              alt="Mera Darzi - Best Tailor Management Software in Pakistan"
               width={150}
               height={25}
+              priority
             />
           </Link>
 
           {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-1">
             {NAV_LINKS.map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-blue-600
-                           rounded-lg hover:bg-blue-50 transition-all"
-              >
-                {link.label}
-              </a>
+              link.hasDropdown ? (
+                <div
+                  key={link.label}
+                  className="relative"
+                  onMouseEnter={() => setCitiesOpen(true)}
+                  onMouseLeave={() => setCitiesOpen(false)}
+                >
+                  <button
+                    className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-blue-600
+                               rounded-lg hover:bg-blue-50 transition-all flex items-center gap-1"
+                  >
+                    {link.label}
+                    <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {citiesOpen && (
+                    <div className="absolute top-full left-0 mt-1 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 min-w-48 z-50">
+                      {CITIES_DROPDOWN.map(c => (
+                        <Link
+                          key={c.href}
+                          href={c.href}
+                          className="block px-4 py-2.5 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-xl hover:bg-blue-50 transition-all"
+                        >
+                          {c.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-blue-600
+                             rounded-lg hover:bg-blue-50 transition-all"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
 
@@ -96,15 +141,33 @@ export function Navbar() {
         {menuOpen && (
           <div className="lg:hidden bg-white border-t border-slate-100 py-4 space-y-1">
             {NAV_LINKS.map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-slate-700
-                           hover:bg-slate-50 rounded-xl transition-colors"
-              >
-                {link.label}
-              </a>
+              link.hasDropdown ? (
+                <div key={link.label}>
+                  <div className="px-4 py-3 text-sm font-semibold text-slate-400 uppercase tracking-wide">
+                    {link.label}
+                  </div>
+                  {CITIES_DROPDOWN.map(c => (
+                    <Link
+                      key={c.href}
+                      href={c.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-6 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-colors"
+                    >
+                      {c.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-4 py-3 text-sm font-medium text-slate-700
+                             hover:bg-slate-50 rounded-xl transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
             <div className="pt-3 px-4 flex flex-col gap-2">
               <Link

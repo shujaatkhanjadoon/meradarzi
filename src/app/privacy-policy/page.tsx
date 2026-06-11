@@ -2,7 +2,11 @@
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Mera Darzi Privacy Policy — aapka data kaise protect hota hai.',
+  description: 'Mera Darzi Privacy Policy — aapka data kaise protect hota hai, kaise collect hota hai, aur aapke kya rights hain.',
+  keywords: ['Mera Darzi privacy policy', 'tailor software data privacy', 'Pakistan app privacy'],
+  alternates: {
+    canonical: '/privacy-policy',
+  },
 }
 
 const LAST_UPDATED = 'May 13, 2026'

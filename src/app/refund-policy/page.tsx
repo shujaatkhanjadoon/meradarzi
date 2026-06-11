@@ -3,6 +3,11 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Refund Policy',
+  description: 'Mera Darzi refund policy — 7-day money-back guarantee. Agar aap santusht nahi hain to hum refund dete hain.',
+  keywords: ['Mera Darzi refund', 'tailor software refund policy', 'money-back guarantee Pakistan'],
+  alternates: {
+    canonical: '/refund-policy',
+  },
 }
 
 export default function RefundPolicyPage() {

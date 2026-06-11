@@ -5,7 +5,18 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Mera Darzi ke baare mein — Pakistan ka pehla tailor management app.',
+  description: 'Mera Darzi ke baare mein — Pakistan ka pehla tailor management app. Humari kahani, mission, aur values janiye.',
+  keywords: ['about Mera Darzi', 'tailor management team', 'Pakistan darzi app', 'boutique software company'],
+  openGraph: {
+    title: 'About Mera Darzi - Pakistan Tailor Management Software',
+    description: 'Learn about Mera Darzi — Pakistan ka pehla offline-first tailor management app ka mission aur team.',
+    url: 'https://meradarzi.pk/about',
+    locale: 'en_PK',
+    type: 'website',
+  },
+  alternates: {
+    canonical: '/about',
+  },
 }
 
 export default function AboutPage() {
