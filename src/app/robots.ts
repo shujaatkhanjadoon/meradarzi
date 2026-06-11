@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://meradarzi.pk/sitemap.xml",
+    sitemap: "https://www.meradarzi.pk/sitemap.xml",
   };
 }

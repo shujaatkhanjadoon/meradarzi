@@ -10,7 +10,8 @@ import {
   Clock, TrendingUp, Heart, MessageCircle, Mail, Globe,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { SoftwareAppSchema, FAQSchema, ReviewSchema } from '@/components/seo/JsonLd'
+import { SoftwareAppSchema, FAQSchema, ReviewSchema, WebPageSchema } from '@/components/seo/JsonLd'
+import { ContactForm } from '@/components/ContactForm'
 
 // ── Intersection Observer Hook ────────────────────────────────────
 function useInView(threshold = 0.15) {
@@ -1033,19 +1034,6 @@ function CTABanner() {
 
 // ── CONTACT SECTION ───────────────────────────────────────────────
 function ContactSection() {
-  const [form, setForm]     = useState({ name: '', email: '', message: '' })
-  const [sent, setSent]     = useState(false)
-  const [sending, setSending] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSending(true)
-    // Simulate submission
-    await new Promise(r => setTimeout(r, 1500))
-    setSent(true)
-    setSending(false)
-  }
-
   return (
     <Section id="contact" className="py-20 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1084,7 +1072,7 @@ function ContactSection() {
                   icon: Globe,
                   label: 'Website',
                   value: 'meradarzi.pk',
-                  href:  'https://www.meradarzi.pk',
+                  href:  'https://www.meradarzi.pk/',
                   color: 'bg-purple-100 text-purple-600',
                 },
               ].map(c => (
@@ -1108,67 +1096,7 @@ function ContactSection() {
 
           {/* Form */}
           <div className="bg-slate-50 rounded-3xl p-7 border border-slate-200">
-            {sent ? (
-              <div className="text-center py-10">
-                <CheckCircle2 size={48} className="text-green-500 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-slate-800 mb-2">
-                  Message Mil Gaya! 🙏
-                </h3>
-                <p className="text-slate-500 text-sm">
-                  Hum 24 ghante mein reply karenge.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="font-bold text-slate-800 text-lg mb-5">
-                  Message Bhejein
-                </h3>
-                {[
-                  { key: 'name',    label: 'Aapka Naam',   type: 'text',  placeholder: 'Ahmed Bhai' },
-                  { key: 'email',   label: 'Email Address', type: 'email', placeholder: 'ahmed@email.com' },
-                ].map(field => (
-                  <div key={field.key}>
-                    <label className="block text-xs font-semibold text-slate-500
-                                       uppercase tracking-wide mb-1.5">
-                      {field.label}
-                    </label>
-                    <input
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      required
-                      value={(form as any)[field.key]}
-                      onChange={e => setForm(f => ({ ...f, [field.key]: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
-                                 text-sm outline-none focus:border-blue-500 transition-colors"
-                    />
-                  </div>
-                ))}
-                <div>
-                  <label className="block text-xs font-semibold text-slate-500
-                                     uppercase tracking-wide mb-1.5">
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    placeholder="Kya sawal hai aapka?"
-                    required
-                    value={form.message}
-                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl
-                               text-sm outline-none focus:border-blue-500 transition-colors resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="w-full bg-blue-600 disabled:bg-slate-300 text-white font-bold
-                             py-3.5 rounded-xl text-sm flex items-center justify-center gap-2
-                             transition-all active:scale-[0.98]"
-                >
-                  {sending ? 'Bhej raha hai...' : 'Message Bhejein ✓'}
-                </button>
-              </form>
-            )}
+            <ContactForm />
           </div>
         </div>
       </div>
@@ -1186,6 +1114,12 @@ export default function LandingPage() {
       <SoftwareAppSchema />
       <ReviewSchema />
       <FAQSchema faqs={FAQS.map(f => ({ q: f.q, a: f.a }))} />
+      <WebPageSchema
+        title="Mera Darzi - Best Tailor Management Software in Pakistan"
+        description="Pakistan's leading tailor management software for darzis and boutiques."
+        datePublished="2026-01-01"
+        dateModified="2026-06-11"
+      />
       <Hero />
       <Features />
       <HowItWorks />

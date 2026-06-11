@@ -13,7 +13,7 @@ const LINKS = {
   Company: [
     { label: 'About Us', href: '/about' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Blog', href: '#' },
+    { label: 'Blog', href: '/cities' },
   ],
   "Our Cities": [
     { label: 'Lahore', href: '/cities/lahore' },
@@ -75,9 +75,10 @@ export function Footer() {
             <Link href="/" className="flex mb-5">
               <Image
                 src="/Mera-Darzi_logo.png"
-                alt="Mera Darzi - Best Tailor Management Software in Pakistan"
+                alt="Mera Darzi - Tailor Management App for Pakistani Darzis"
                 width={150}
                 height={96}
+                sizes="150px"
               />
             </Link>
             <p className="text-sm leading-relaxed mb-5 max-w-xs">

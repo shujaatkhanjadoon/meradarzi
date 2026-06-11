@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
           key: "Referrer-Policy",
           value: "strict-origin-when-cross-origin",
         },
+        {
+          key: "Strict-Transport-Security",
+          value: "max-age=63072000; includeSubDomains; preload",
+        },
       ],
     },
     {
@@ -72,6 +76,12 @@ const nextConfig: NextConfig = {
     {
       source: "/refund",
       destination: "/refund-policy",
+      permanent: true,
+    },
+    {
+      source: "/:path((?!www\\.).*)",
+      has: [{ type: "host", value: "meradarzi.pk" }],
+      destination: "https://www.meradarzi.pk/:path",
       permanent: true,
     },
   ],

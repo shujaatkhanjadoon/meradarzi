@@ -7,7 +7,7 @@ export function SoftwareAppSchema() {
     operatingSystem: "Web, Android, iOS",
     description:
       "Pakistan's leading tailor management software. Manage orders, customer measurements, payments, karigar assignments, and delivery tracking.",
-    url: "https://meradarzi.pk",
+    url: "https://www.meradarzi.pk",
     sameAs: [
       "https://wa.me/923135931459",
     ],
@@ -32,9 +32,9 @@ export function SoftwareAppSchema() {
     author: {
       "@type": "Organization",
       name: "Mera Darzi",
-      url: "https://meradarzi.pk",
+      url: "https://www.meradarzi.pk",
     },
-    screenshot: "https://meradarzi.pk/og-images/MeraDarzi.jpg",
+    screenshot: "https://www.meradarzi.pk/icon-512.png",
     featureList: [
       "Smart Order Tracking",
       "Customer QR Tracking",
@@ -59,8 +59,8 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Mera Darzi",
-    url: "https://meradarzi.pk",
-    logo: "https://meradarzi.pk/logo.png",
+    url: "https://www.meradarzi.pk",
+    logo: "https://www.meradarzi.pk/logo.png",
     description:
       "Pakistan's leading tailor management software for darzis and boutiques.",
     address: {
@@ -170,6 +170,83 @@ export function ReviewSchema() {
       bestRating: "5",
       ratingCount: "150",
     },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function WebPageSchema({
+  title,
+  description,
+  datePublished,
+  dateModified,
+}: {
+  title: string;
+  description: string;
+  datePublished?: string;
+  dateModified?: string;
+}) {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: title,
+    description,
+    url: "https://www.meradarzi.pk",
+    inLanguage: "en",
+    about: {
+      "@type": "Thing",
+      name: "Tailor Management Software",
+      description: "Digital tailor management and boutique management software for Pakistan",
+    },
+  };
+
+  if (datePublished) schema.datePublished = datePublished;
+  if (dateModified) schema.dateModified = dateModified;
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function LocalBusinessSchema({
+  city,
+  province,
+  shops,
+}: {
+  city: string;
+  province: string;
+  shops: string;
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: `Mera Darzi - ${city}`,
+    description: `Tailor management software serving ${city}, ${province}. ${shops}+ shops trust Mera Darzi.`,
+    url: `https://www.meradarzi.pk/cities/${city.toLowerCase().replace(/\s+/g, "-")}`,
+    areaServed: {
+      "@type": "City",
+      name: city,
+      containedInPlace: {
+        "@type": "State",
+        name: province,
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "PK",
+        },
+      },
+    },
+    availableLanguage: ["English", "Urdu"],
+    currenciesAccepted: "PKR",
+    paymentAccepted: ["Cash", "Easypaisa", "JazzCash", "Raast", "Bank Transfer"],
+    priceRange: "$$",
   };
 
   return (

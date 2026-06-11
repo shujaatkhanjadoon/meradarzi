@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://meradarzi.pk";
+const BASE_URL = "https://www.meradarzi.pk";
 
 const CITIES = [
   { name: "lahore", slug: "lahore" },

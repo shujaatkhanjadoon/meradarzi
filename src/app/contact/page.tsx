@@ -1,5 +1,7 @@
 ﻿import type { Metadata }  from 'next'
 import { Mail, MessageCircle, MapPin, Clock } from 'lucide-react'
+import { BreadcrumbSchema, WebPageSchema } from '@/components/seo/JsonLd'
+import { ContactForm } from '@/components/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -8,9 +10,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Mera Darzi - Tailor Management Software Support',
     description: 'Get in touch with Mera Darzi support team via WhatsApp, email, or contact form.',
-    url: 'https://meradarzi.pk/contact',
-    locale: 'en_PK',
+    url: 'https://www.meradarzi.pk/contact',
+    locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-images/MeraDarzi.jpg', width: 1200, height: 630, alt: 'Contact Mera Darzi - Tailor Management Software Pakistan' }],
+    siteName: 'Mera Darzi',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Mera Darzi - Tailor Management Software Support',
+    description: 'Get in touch with Mera Darzi support team via WhatsApp, email, or contact form.',
+    images: ['/og-images/MeraDarzi.jpg'],
   },
   alternates: {
     canonical: '/contact',
@@ -20,6 +30,18 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="pt-16 min-h-screen bg-slate-50">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.meradarzi.pk" },
+          { name: "Contact", url: "https://www.meradarzi.pk/contact" },
+        ]}
+      />
+      <WebPageSchema
+        title="Contact Mera Darzi - Tailor Management Software Support"
+        description="Get in touch with Mera Darzi support team via WhatsApp, email, or contact form."
+        datePublished="2026-01-01"
+        dateModified="2026-06-11"
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20">
 
         <div className="text-center mb-14">
@@ -91,65 +113,7 @@ export default function ContactPage() {
 
           {/* Form */}
           <div className="lg:col-span-3 bg-white rounded-3xl p-7 border border-slate-200 shadow-sm">
-            <h2 className="font-bold text-slate-800 text-xl mb-6">Message Bhejein</h2>
-            <form className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                {['Your Name', 'Your Email'].map((label, i) => (
-                  <div key={label}>
-                    <label className="block text-xs font-semibold text-slate-500
-                                       uppercase tracking-wide mb-1.5">
-                      {label}
-                    </label>
-                    <input
-                      type={i === 1 ? 'email' : 'text'}
-                      placeholder={i === 0 ? 'Ahmed Bhai' : 'ahmed@gmail.com'}
-                      required
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200
-                                 rounded-xl text-sm outline-none focus:border-blue-500
-                                 focus:bg-white transition-all"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-500
-                                   uppercase tracking-wide mb-1.5">
-                  Subject
-                </label>
-                <select className="w-full px-4 py-3 bg-slate-50 border border-slate-200
-                                   rounded-xl text-sm outline-none focus:border-blue-500
-                                   focus:bg-white transition-all">
-                  {[
-                    'Technical Support',
-                    'Billing / Payment',
-                    'Feature Request',
-                    'Bug Report',
-                    'General Inquiry',
-                  ].map(s => <option key={s}>{s}</option>)}
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-slate-500
-                                   uppercase tracking-wide mb-1.5">
-                  Message
-                </label>
-                <textarea
-                  rows={5}
-                  placeholder="Apna sawal ya masla likhein..."
-                  required
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200
-                             rounded-xl text-sm outline-none focus:border-blue-500
-                             focus:bg-white transition-all resize-none"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold
-                           py-3.5 rounded-xl text-sm transition-all active:scale-[0.98]"
-              >
-                Send Message ✓
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

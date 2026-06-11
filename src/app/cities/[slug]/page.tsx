@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckCircle2, ArrowRight, Star, Smartphone, Scissors, Package, Users, CreditCard } from "lucide-react";
-import { OrganizationSchema, BreadcrumbSchema } from "@/components/seo/JsonLd";
+import { OrganizationSchema, BreadcrumbSchema, LocalBusinessSchema, WebPageSchema } from "@/components/seo/JsonLd";
 
 const CITIES = [
   {
@@ -186,9 +186,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `Mera Darzi - Best Tailor Management Software in ${city.name}`,
       description: city.description.slice(0, 160),
-      url: `https://meradarzi.pk/cities/${city.slug}`,
-      locale: "en_PK",
+      url: `https://www.meradarzi.pk/cities/${city.slug}`,
+      locale: "en_US",
       type: "website",
+      images: [{ url: "/og-images/MeraDarzi.jpg", width: 1200, height: 630, alt: `Mera Darzi - Tailor Management Software in ${city.name}` }],
+      siteName: "Mera Darzi",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Mera Darzi - Best Tailor Management Software in ${city.name}`,
+      description: city.description.slice(0, 160),
+      images: ["/og-images/MeraDarzi.jpg"],
     },
     alternates: {
       canonical: `/cities/${city.slug}`,
@@ -211,11 +219,18 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   return (
     <>
       <OrganizationSchema />
+      <LocalBusinessSchema city={city.name} province={city.province} shops={city.shops} />
+      <WebPageSchema
+        title={`Best Tailor Management Software in ${city.name} | Mera Darzi`}
+        description={city.description.slice(0, 160)}
+        datePublished="2026-01-01"
+        dateModified="2026-06-11"
+      />
       <BreadcrumbSchema
         items={[
-          { name: "Home", url: "https://meradarzi.pk" },
-          { name: "Cities", url: "https://meradarzi.pk/cities" },
-          { name: city.name, url: `https://meradarzi.pk/cities/${city.slug}` },
+          { name: "Home", url: "https://www.meradarzi.pk" },
+          { name: "Cities", url: "https://www.meradarzi.pk/cities" },
+          { name: city.name, url: `https://www.meradarzi.pk/cities/${city.slug}` },
         ]}
       />
 

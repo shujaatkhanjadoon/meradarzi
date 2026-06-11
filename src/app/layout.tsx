@@ -4,6 +4,7 @@ import { Navbar } from "@/components/landing/Navbar";
 import { Footer } from "@/components/landing/Footer";
 import { Poppins } from "next/font/google";
 import { OrganizationSchema } from "@/components/seo/JsonLd";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -53,9 +54,9 @@ export const metadata: Metadata = {
       "Mera Darzi - Pakistan's #1 Tailor Management App",
     description:
       "Manage tailoring orders, customer measurements, payments, and delivery tracking with Mera Darzi — Pakistan's modern tailoring management solution. Free forever plan available.",
-    url: "https://meradarzi.pk/",
+    url: "https://www.meradarzi.pk/",
     siteName: "Mera Darzi",
-    locale: "en_PK",
+    locale: "en_US",
     type: "website",
     images: [
       {
@@ -89,12 +90,13 @@ export const metadata: Metadata = {
     telephone: true,
   },
 
-  metadataBase: new URL("https://meradarzi.pk"),
+  metadataBase: new URL("https://www.meradarzi.pk"),
 
   alternates: {
-    canonical: "https://meradarzi.pk",
+    canonical: "https://www.meradarzi.pk",
     languages: {
-      "en-PK": "https://meradarzi.pk",
+      "en-PK": "https://www.meradarzi.pk",
+      "x-default": "https://www.meradarzi.pk",
     },
   },
 
@@ -140,7 +142,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-PK" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${poppins.variable} min-w-0 overflow-x-clip font-sans antialiased`}
       >
@@ -149,6 +151,7 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <Analytics />
         </>
       </body>
     </html>

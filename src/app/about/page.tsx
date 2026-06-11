@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { Heart, Shield, Zap, Users, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import { BreadcrumbSchema, WebPageSchema } from '@/components/seo/JsonLd'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -10,9 +11,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Mera Darzi - Pakistan Tailor Management Software',
     description: 'Learn about Mera Darzi — Pakistan ka pehla offline-first tailor management app ka mission aur team.',
-    url: 'https://meradarzi.pk/about',
-    locale: 'en_PK',
+    url: 'https://www.meradarzi.pk/about',
+    locale: 'en_US',
     type: 'website',
+    images: [{ url: '/og-images/MeraDarzi.jpg', width: 1200, height: 630, alt: 'About Mera Darzi - Tailor Management Software Pakistan' }],
+    siteName: 'Mera Darzi',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Mera Darzi - Tailor Management Software Pakistan',
+    description: 'Learn about Mera Darzi — Pakistan ka pehla offline-first tailor management app.',
+    images: ['/og-images/MeraDarzi.jpg'],
   },
   alternates: {
     canonical: '/about',
@@ -22,6 +31,18 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="pt-16">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.meradarzi.pk" },
+          { name: "About", url: "https://www.meradarzi.pk/about" },
+        ]}
+      />
+      <WebPageSchema
+        title="About Mera Darzi - Tailor Management Software Pakistan"
+        description="Learn about Mera Darzi — Pakistan ka pehla offline-first tailor management app."
+        datePublished="2026-01-01"
+        dateModified="2026-06-11"
+      />
 
       {/* Hero */}
       <div className="bg-linear-to-br from-slate-900 to-blue-950 py-24 px-4">
@@ -30,9 +51,10 @@ export default function AboutPage() {
                           justify-center mx-auto mb-6">
             <Image 
             src="/icon.svg"
-              alt="MeraDarzi Icon"
+              alt="Mera Darzi App Icon - Tailor Management Software for Pakistan"
               width={64}
               height={64}
+              sizes="64px"
             />
           </div>
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-5">
@@ -119,7 +141,7 @@ export default function AboutPage() {
           Aaj hi shuru karein — 14 din free trial, koi card nahi chahiye.
         </p>
         <Link
-          href="/auth"
+          href="https://app.meradarzi.pk/"
           className="inline-flex items-center gap-2 bg-blue-600 text-white
                      font-bold px-10 py-4 rounded-2xl hover:bg-blue-700 transition-all"
         >
