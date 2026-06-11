@@ -1,4 +1,5 @@
-﻿import type { Metadata } from 'next'
+﻿import { BreadcrumbSchema, WebPageSchema } from '@/components/seo/JsonLd'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -100,6 +101,18 @@ Contact us at darzihub9@gmail.com to exercise these rights.`,
 
   return (
     <div className="pt-16 min-h-screen bg-slate-50">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.meradarzi.pk" },
+          { name: "Privacy Policy", url: "https://www.meradarzi.pk/privacy-policy" },
+        ]}
+      />
+      <WebPageSchema
+        title="Privacy Policy | Mera Darzi"
+        description="Mera Darzi Privacy Policy — aapka data kaise protect hota hai."
+        datePublished="2026-01-01"
+        dateModified="2026-06-11"
+      />
       <div className="bg-white border-b border-slate-100 py-16 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="inline-block bg-blue-100 text-blue-700 text-xs font-bold

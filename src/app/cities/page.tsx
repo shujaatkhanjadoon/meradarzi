@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import { CITIES, PROVINCES } from "@/lib/cities";
 
 export const metadata: Metadata = {
   title: "Tailor Management Software in Pakistani Cities | Mera Darzi",
@@ -34,20 +35,6 @@ export const metadata: Metadata = {
   },
 };
 
-const CITIES = [
-  { name: "Lahore", slug: "lahore", shops: "200+", province: "Punjab" },
-  { name: "Karachi", slug: "karachi", shops: "300+", province: "Sindh" },
-  { name: "Islamabad", slug: "islamabad", shops: "100+", province: "Islamabad" },
-  { name: "Rawalpindi", slug: "rawalpindi", shops: "100+", province: "Punjab" },
-  { name: "Faisalabad", slug: "faisalabad", shops: "150+", province: "Punjab" },
-  { name: "Peshawar", slug: "peshawar", shops: "80+", province: "KPK" },
-  { name: "Multan", slug: "multan", shops: "70+", province: "Punjab" },
-  { name: "Gujranwala", slug: "gujranwala", shops: "50+", province: "Punjab" },
-  { name: "Sialkot", slug: "sialkot", shops: "40+", province: "Punjab" },
-  { name: "Quetta", slug: "quetta", shops: "30+", province: "Balochistan" },
-  { name: "Hyderabad", slug: "hyderabad-sindh", shops: "40+", province: "Sindh" },
-];
-
 export default function CitiesIndexPage() {
   return (
     <div className="pt-16 min-h-screen bg-slate-50">
@@ -60,32 +47,37 @@ export default function CitiesIndexPage() {
             </span>
           </h1>
           <p className="text-blue-200 text-xl max-w-2xl mx-auto">
-            Mera Darzi serves tailors and boutiques across all major cities in Pakistan.
+            Mera Darzi serves tailors and boutiques across {CITIES.length} major cities in Pakistan.
             Find your city and start your digital journey today.
           </p>
         </div>
       </section>
 
-      <section className="py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CITIES.map((city) => (
-              <Link
-                key={city.slug}
-                href={`/cities/${city.slug}`}
-                className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <MapPin size={20} className="text-blue-600" />
-                  <h3 className="font-bold text-slate-800 text-lg">{city.name}</h3>
-                </div>
-                <p className="text-slate-500 text-xs mb-2">{city.province}</p>
-                <p className="text-blue-600 text-sm font-semibold">{city.shops} shops</p>
-              </Link>
-            ))}
+      {PROVINCES.map((province) => (
+        <section key={province} className="py-12 px-4 first:pt-20 last:pb-20">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+              <MapPin size={20} className="text-blue-600" />
+              {province}
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {CITIES.filter((c) => c.province === province).map((city) => (
+                <Link
+                  key={city.slug}
+                  href={`/cities/${city.slug}`}
+                  className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <MapPin size={20} className="text-blue-600" />
+                    <h3 className="font-bold text-slate-800 text-lg">{city.name}</h3>
+                  </div>
+                  <p className="text-blue-600 text-sm font-semibold">{city.shops} shops</p>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
     </div>
   );
 }

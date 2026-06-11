@@ -51,9 +51,10 @@ export default function AboutPage() {
                           justify-center mx-auto mb-6">
             <Image 
             src="/icon.svg"
-              alt="Mera Darzi App Icon - Tailor Management Software for Pakistan"
+              alt="Mera Darzi"
               width={64}
               height={64}
+              priority
               sizes="64px"
             />
           </div>
@@ -138,14 +139,14 @@ export default function AboutPage() {
           Sath Chalein?
         </h2>
         <p className="text-slate-500 mb-8 max-w-md mx-auto">
-          Aaj hi shuru karein — 14 din free trial, koi card nahi chahiye.
+          Aaj hi shuru karein — 🌱 Free plan hamesha free, ⭐ Professional plan 14 din free trial. Koi card nahi chahiye.
         </p>
         <Link
           href="https://app.meradarzi.pk/"
           className="inline-flex items-center gap-2 bg-blue-600 text-white
                      font-bold px-10 py-4 rounded-2xl hover:bg-blue-700 transition-all"
         >
-          Free Trial Shuru Karein <ArrowRight size={18} />
+          Free Account Banayein <ArrowRight size={18} />
         </Link>
       </section>
     </div>

@@ -1,3 +1,4 @@
+import { BreadcrumbSchema, WebPageSchema } from '@/components/seo/JsonLd'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -91,6 +92,18 @@ Refunds: See our Refund Policy page.`,
 
   return (
     <div className="pt-16 min-h-screen bg-slate-50">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.meradarzi.pk" },
+          { name: "Terms & Conditions", url: "https://www.meradarzi.pk/terms-and-conditions" },
+        ]}
+      />
+      <WebPageSchema
+        title="Terms & Conditions | Mera Darzi"
+        description="Mera Darzi terms and conditions — service ke istemal ke qawaneen aur shartat."
+        datePublished="2026-01-01"
+        dateModified="2026-06-11"
+      />
       <div className="bg-white border-b border-slate-100 py-16 px-4">
         <div className="max-w-3xl mx-auto">
           <div className="inline-block bg-purple-100 text-purple-700 text-xs font-bold

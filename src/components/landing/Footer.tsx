@@ -1,6 +1,12 @@
 // src/components/landing/Footer.tsx
 import Link from 'next/link'
 import Image from 'next/image'
+import { CITIES } from '@/lib/cities'
+
+const TOP_CITIES = CITIES.filter((c) =>
+  ["Lahore","Karachi","Islamabad","Rawalpindi","Faisalabad","Peshawar","Multan","Gujranwala","Sialkot","Quetta","Hyderabad","Bahawalpur","Gujrat","Sukkur","Abbottabad","Mardan","Gwadar","Sahiwal"].includes(c.name)
+)
+const CITY_HALF = Math.ceil(TOP_CITIES.length / 2)
 
 const LINKS = {
   Product: [
@@ -13,14 +19,6 @@ const LINKS = {
   Company: [
     { label: 'About Us', href: '/about' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Blog', href: '/cities' },
-  ],
-  "Our Cities": [
-    { label: 'Lahore', href: '/cities/lahore' },
-    { label: 'Karachi', href: '/cities/karachi' },
-    { label: 'Islamabad', href: '/cities/islamabad' },
-    { label: 'Rawalpindi', href: '/cities/rawalpindi' },
-    { label: 'Faisalabad', href: '/cities/faisalabad' },
     { label: 'All Cities', href: '/cities' },
   ],
   Legal: [
@@ -33,7 +31,7 @@ const LINKS = {
 const SOCIALS = [
   {
     name: 'WhatsApp',
-    href: `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135931459'}`,
+    href: `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135634667'}`,
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -68,18 +66,19 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-6 gap-8 py-14 border-b border-slate-800">
+        <div className="grid grid-cols-2 lg:grid-cols-7 gap-8 py-14 border-b border-slate-800">
 
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
             <Link href="/" className="flex mb-5">
-              <Image
-                src="/Mera-Darzi_logo.png"
-                alt="Mera Darzi - Tailor Management App for Pakistani Darzis"
-                width={150}
-                height={96}
-                sizes="150px"
-              />
+          <Image
+              src="/Mera-Darzi_logo.png"
+              alt="Mera Darzi - Tailor Management App for Pakistani Darzis"
+              width={150}
+              height={96}
+              loading="lazy"
+              sizes="150px"
+            />
             </Link>
             <p className="text-sm leading-relaxed mb-5 max-w-xs">
               Pakistan ka pehla offline-first tailor management app.
@@ -95,9 +94,9 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.name}
-                  className="w-9 h-9 bg-slate-800 hover:bg-blue-600 rounded-xl
+                  className="w-11 h-11 bg-slate-800 hover:bg-blue-600 rounded-xl
                              flex items-center justify-center text-slate-400
-                             hover:text-white transition-all"
+                             hover:text-white transition-all min-w-[44px] min-h-[44px]"
                 >
                   {s.icon}
                 </a>
@@ -123,6 +122,45 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Our Cities - two columns */}
+          <div className="col-span-2">
+            <h4 className="text-white font-bold text-sm mb-4">Our Cities</h4>
+            <div className="grid grid-cols-2 gap-x-6">
+              <ul className="space-y-3">
+                {TOP_CITIES.slice(0, CITY_HALF).map(c => (
+                  <li key={c.slug}>
+                    <Link
+                      href={`/cities/${c.slug}`}
+                      className="text-sm hover:text-white transition-colors"
+                    >
+                      {c.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <ul className="space-y-3">
+                {TOP_CITIES.slice(CITY_HALF).map(c => (
+                  <li key={c.slug}>
+                    <Link
+                      href={`/cities/${c.slug}`}
+                      className="text-sm hover:text-white transition-colors"
+                    >
+                      {c.name}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    href="/cities"
+                    className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-semibold"
+                  >
+                    All Cities →
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Bottom bar */}

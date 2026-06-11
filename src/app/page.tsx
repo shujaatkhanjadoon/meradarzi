@@ -1,87 +1,15 @@
 // src/app/page.tsx
-'use client'
-
-import { useState, useEffect, useRef} from 'react'
 import Link from 'next/link'
 import {
-  Scissors, Package, Users, CreditCard, Wifi, QrCode,
-  BarChart2, Star, CheckCircle2, ArrowRight,
-  ChevronDown, ChevronUp, Smartphone, Shield, Zap,
-  Clock, TrendingUp, Heart, MessageCircle, Mail, Globe,
+  Package, Users, CreditCard, Wifi,
+  BarChart2, Star, ArrowRight,
+  Smartphone, Zap,
+  Clock, TrendingUp, Heart, MessageCircle, Mail, Globe, CheckCircle2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { SoftwareAppSchema, FAQSchema, ReviewSchema, WebPageSchema } from '@/components/seo/JsonLd'
+import { SoftwareAppSchema, ReviewSchema, WebPageSchema, HowToSchema, BreadcrumbSchema } from '@/components/seo/JsonLd'
 import { ContactForm } from '@/components/ContactForm'
-
-// ── Intersection Observer Hook ────────────────────────────────────
-function useInView(threshold = 0.15) {
-  const ref      = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true) },
-      { threshold }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [threshold])
-
-  return { ref, inView }
-}
-
-// ── Animated Counter ──────────────────────────────────────────────
-function AnimatedCounter({
-  end, suffix = '', prefix = '', duration = 2000
-}: {
-  end: number; suffix?: string; prefix?: string; duration?: number
-}) {
-  const [count, setCount]     = useState(0)
-  const { ref, inView }       = useInView()
-
-  useEffect(() => {
-    if (!inView) return
-    const start    = 0
-    const step     = end / (duration / 16)
-    let current    = start
-    const timer    = setInterval(() => {
-      current += step
-      if (current >= end) { setCount(end); clearInterval(timer) }
-      else setCount(Math.floor(current))
-    }, 16)
-    return () => clearInterval(timer)
-  }, [inView, end, duration])
-
-  return (
-    <span ref={ref}>
-      {prefix}{count.toLocaleString()}{suffix}
-    </span>
-  )
-}
-
-// ── Section Wrapper ───────────────────────────────────────────────
-function Section({
-  id, children, className,
-}: {
-  id?: string; children: React.ReactNode; className?: string
-}) {
-  const { ref, inView } = useInView()
-  return (
-    <section
-      id={id}
-      ref={ref}
-      className={cn(
-        'transition-all duration-700',
-        inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6',
-        className
-      )}
-    >
-      {children}
-    </section>
-  )
-}
+import { Section, PricingCards, StatsSection, FAQ } from '@/components/landing/InteractiveComponents'
 
 // ─────────────────────────────────────────────────────────────────
 // DATA
@@ -90,50 +18,50 @@ function Section({
 const FEATURES = [
   {
     icon:  Package,
-    title: 'Smart Order Tracking',
-    desc:  'Har order ka real-time status. QR code se customers khud track kar sakte hain.',
+    title: 'Order + QR Tracking',
+    desc:  'Har order ka real-time status aur unique QR code. Customer scan kare aur khud track kare.',
     color: 'text-blue-600', bg: 'bg-blue-50',
-  },
-  {
-    icon:  QrCode,
-    title: 'Customer QR Tracking',
-    desc:  'Har order ka unique QR code. Customer scan kare aur status khud dekhe.',
-    color: 'text-purple-600', bg: 'bg-purple-50',
   },
   {
     icon:  Users,
     title: 'Karigar Management',
-    desc:  'Karigars ko orders assign karein. Unka kaam track karein real-time mein.',
+    desc:  'Karigars ko orders assign karein. Unka kaam track karein. Salary reports banayein.',
     color: 'text-green-600', bg: 'bg-green-50',
   },
   {
     icon:  CreditCard,
     title: 'Payment Tracking',
-    desc:  'Cash, Easypaisa, JazzCash — sab payments track. Baaki automatically dekhein.',
+    desc:  'Cash, Easypaisa, JazzCash — sab payments track karein. Baaki automatically calculate.',
     color: 'text-amber-600', bg: 'bg-amber-50',
+  },
+  {
+    icon:  Smartphone,
+    title: 'Measurements + Photos',
+    desc:  'Gahak ke nap aur kapra photos ek jagah. Kabhi bhoolo nahi kaun si shirt kis ki hai.',
+    color: 'text-purple-600', bg: 'bg-purple-50',
   },
   {
     icon:  Wifi,
     title: 'Offline Support',
-    desc:  'Internet band ho to bhi kaam jari rahega. Data automatically sync hoga.',
+    desc:  'Internet band ho to bhi kaam jari rahe. Data automatically sync jab internet aaye.',
     color: 'text-teal-600', bg: 'bg-teal-50',
   },
   {
     icon:  BarChart2,
     title: 'Reports & Analytics',
-    desc:  'Monthly income, popular garments, best customers — sab ek jagah.',
+    desc:  'Monthly income, popular garments, best customers — sab ek jagah. Data se samjhein.',
     color: 'text-red-600', bg: 'bg-red-50',
   },
   {
     icon:  MessageCircle,
-    title: 'WhatsApp Integration',
-    desc:  'Customer ko order ready hone par WhatsApp message directly bhejein.',
+    title: 'WhatsApp Notifications',
+    desc:  'Order ready hone par customer ko auto WhatsApp message. Manual ya auto dono.',
     color: 'text-green-600', bg: 'bg-green-50',
   },
   {
-    icon:  Shield,
-    title: 'Secure & Private',
-    desc:  'Aapka data sirf aapka hai. Bank-level encryption. Kabhi share nahi hota.',
+    icon:  Globe,
+    title: 'Cloud Database',
+    desc:  'Phone kho jaye to bhi naya phone pe sab data wapas. Cloud backup always on.',
     color: 'text-slate-600', bg: 'bg-slate-50',
   },
 ]
@@ -167,13 +95,6 @@ const STEPS = [
     desc:  'Order deliver ho, payment record ho, customer happy ho. Shukriya!',
     color: 'from-green-500 to-green-600',
   },
-]
-
-const STATS = [
-  { label: 'Registered Shops',  value: 500,   suffix: '+',  icon: Scissors  },
-  { label: 'Orders Managed',    value: 25000, suffix: '+',  icon: Package   },
-  { label: 'Happy Karigars',    value: 1500,  suffix: '+',  icon: Users     },
-  { label: 'Customer Rating',   value: 4.8,   suffix: '/5', icon: Star      },
 ]
 
 const BENEFITS = [
@@ -226,7 +147,7 @@ const TESTIMONIALS = [
     avatar: 'T',
     color:  'bg-purple-500',
     rating: 5,
-    text:   'Professional plan mein reports dekhna shuru kiya to pata chala Sherwani sabse zyada order hoti hai. Business strategy change kar li.',
+    text:   'Reports dekhna shuru kiya to pata chala Sherwani sabse zyada order hoti hai. Business strategy change kar li. Mera Darzi ne meri dukaan badal di!',
   },
   {
     name:   'Khalid Bhai',
@@ -241,7 +162,7 @@ const TESTIMONIALS = [
 const FAQS = [
   {
     q: 'Kya yeh app bilkul free hai?',
-    a: 'Haan! Starter plan hamesha free hai — 30 orders/month, unlimited customers, basic tracking. Zyada features ke liye Professional ya Business plan lein.',
+    a: 'Haan! 🌱 Starter plan hamesha free hai — 30 orders/month, 50 customers, measurements aur payments track karein. Zyada orders aur features ke liye ⭐ Professional ya 👑 Business plan lein.',
   },
   {
     q: 'Agar internet nahi ho to kya hoga?',
@@ -253,7 +174,7 @@ const FAQS = [
   },
   {
     q: 'Kya ek se zyada device pe use kar sakte hain?',
-    a: 'Professional aur Business plan mein multi-device support hai. Ghar pe laptop, dukaan pe phone — dono sync.',
+    a: 'Haan! Professional aur Business plan mein multiple devices pe same account use kar sakte hain. Ghar pe laptop, dukaan pe phone — sab sync.',
   },
   {
     q: 'Data safe hai? Koi aur dekh to nahi sakta?',
@@ -261,64 +182,11 @@ const FAQS = [
   },
   {
     q: 'Pakistan mein payment kaise karein?',
-    a: 'Raast ID se payment karein — bilkul free transaction. HBL, MCB, Easypaisa, JazzCash sab se pay kar sakte hain.',
+    a: 'Raast ID se payment karein — transaction fee zero. Professional Rs. 999/month ya Rs. 9,999/year. Business Rs. 2,499/month ya Rs. 25,000/year. Yearly plan mein 17% bachat!',
   },
   {
     q: 'Play Store pe kab aayega?',
-    a: 'Abhi browser se install ho jata hai (PWA). Android ya iPhone pe Add to Home Screen karein — same as native app, no Play Store needed.',
-  },
-]
-
-const PLANS = [
-  {
-    name:    'Starter',
-    price:   'Free',
-    period:  'hamesha',
-    color:   'border-slate-200',
-    badge:   null,
-    features: [
-      '30 orders/month',
-      'Unlimited customers',
-      'Basic order tracking',
-      'Payment recording',
-      'Offline support',
-    ],
-    cta: 'Free Mein Shuru Karein',
-    ctaStyle: 'bg-slate-900 text-white hover:bg-slate-700',
-  },
-  {
-    name:    'Professional',
-    price:   'Rs. 999',
-    period:  'per month',
-    color:   'border-blue-500 ring-2 ring-blue-500',
-    badge:   'Most Popular',
-    features: [
-      'Unlimited orders',
-      '3 karigar accounts',
-      'QR order tracking',
-      'WhatsApp integration',
-      'Multi-device sync',
-      'Analytics & reports',
-    ],
-    cta: 'Professional Lein',
-    ctaStyle: 'bg-blue-600 text-white hover:bg-blue-700',
-  },
-  {
-    name:    'Business',
-    price:   'Rs. 2,499',
-    period:  'per month',
-    color:   'border-purple-300',
-    badge:   'Best Value',
-    features: [
-      'Unlimited everything',
-      'Unlimited karigars',
-      'Cloud photo storage',
-      'Priority support',
-      'Custom branding',
-      'Advanced analytics',
-    ],
-    cta: 'Business Lein',
-    ctaStyle: 'bg-purple-600 text-white hover:bg-purple-700',
+    a: 'Abhi browser se use karein. Koi installation nahi chahiye. Link open karein aur shuru karein. Android aur iPhone dono pe kaam karta hai.',
   },
 ]
 
@@ -635,51 +503,6 @@ function HowItWorks() {
   )
 }
 
-// ── STATS ─────────────────────────────────────────────────────────
-function Stats() {
-  return (
-    <Section className="py-20 lg:py-24 bg-linear-to-br from-blue-600 to-blue-800 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full
-                        blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full
-                        blur-3xl translate-y-1/2 -translate-x-1/2" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">
-            Pakistan Bhar Mein Tailors Ka Bharosa
-          </h2>
-          <p className="text-blue-200 text-lg">
-            Har roz naye darzi Mera Darzi ke saath join ho rahe hain
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {STATS.map(stat => (
-            <div key={stat.label}
-              className="bg-white/10 backdrop-blur rounded-3xl p-6 text-center
-                         border border-white/20 hover:bg-white/15 transition-colors">
-              <stat.icon size={28} className="text-blue-200 mx-auto mb-3" />
-              <p className="text-4xl font-black text-white mb-1">
-                <AnimatedCounter
-                  end={Number(String(stat.value).replace('.', ''))}
-                  suffix={stat.suffix}
-                  prefix={stat.value < 10 ? '' : ''}
-                  duration={stat.value < 10 ? 1500 : 2000}
-                />
-              </p>
-              <p className="text-blue-200 text-sm font-medium">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Section>
-  )
-}
-
 // ── BENEFITS ──────────────────────────────────────────────────────
 function Benefits() {
   return (
@@ -820,170 +643,6 @@ function Testimonials() {
   )
 }
 
-// ── PRICING ───────────────────────────────────────────────────────
-function Pricing() {
-  const [annual, setAnnual] = useState(false)
-
-  return (
-    <Section id="pricing" className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <div className="inline-block bg-blue-100 text-blue-700 text-xs font-bold
-                          px-4 py-2 rounded-full mb-4 uppercase tracking-wide">
-            Pricing
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-4">
-            Simple, Clear Pricing
-          </h2>
-          <p className="text-slate-500 text-lg mb-7">
-            Har budget ke liye plan. Free se shuru, grow karte waqt upgrade karein.
-          </p>
-
-          {/* Annual toggle */}
-          <div className="inline-flex items-center gap-3 bg-slate-100 p-1 rounded-full">
-            <button
-              onClick={() => setAnnual(false)}
-              className={cn(
-                'px-5 py-2 rounded-full text-sm font-semibold transition-all',
-                !annual ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'
-              )}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setAnnual(true)}
-              className={cn(
-                'px-5 py-2 rounded-full text-sm font-semibold transition-all',
-                annual ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'
-              )}
-            >
-              Yearly
-              <span className="ml-1.5 bg-green-500 text-white text-[10px] font-bold
-                               px-1.5 py-0.5 rounded-full">
-                -20%
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {PLANS.map((plan, i) => (
-            <div
-              key={plan.name}
-              className={cn(
-                'rounded-3xl p-7 border-2 relative transition-all hover:-translate-y-1',
-                plan.color,
-                i === 1 ? 'shadow-2xl shadow-blue-100' : 'shadow-sm'
-              )}
-            >
-              {plan.badge && (
-                <div className={cn(
-                  'absolute -top-3 left-1/2 -translate-x-1/2',
-                  'text-white text-[10px] font-black px-4 py-1.5 rounded-full',
-                  i === 1 ? 'bg-blue-600' : 'bg-purple-600'
-                )}>
-                  {plan.badge}
-                </div>
-              )}
-
-              <h3 className="font-black text-slate-900 text-xl mb-1">{plan.name}</h3>
-
-              <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-3xl font-black text-slate-900">
-                  {plan.price === 'Free' ? plan.price :
-                    annual ? plan.price.replace('999', '800').replace('2,499', '2,000') :
-                    plan.price
-                  }
-                </span>
-                {plan.price !== 'Free' && (
-                  <span className="text-slate-400 text-sm">/{annual ? 'mo (billed yearly)' : plan.period}</span>
-                )}
-                {plan.price === 'Free' && (
-                  <span className="text-slate-400 text-sm">{plan.period}</span>
-                )}
-              </div>
-
-              <ul className="space-y-3 mb-7">
-                {plan.features.map(f => (
-                  <li key={f} className="flex items-center gap-2.5 text-slate-600 text-sm">
-                    <CheckCircle2 size={15} className="text-green-500 shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="https://app.meradarzi.pk/"
-                target="_blank"
-                className={cn(
-                  'block w-full text-center font-bold py-3.5 rounded-2xl',
-                  'text-sm transition-all active:scale-95',
-                  plan.ctaStyle
-                )}
-              >
-                {plan.cta}
-              </Link>
-            </div>
-          ))}
-        </div>
-
-        <p className="text-center text-slate-400 text-sm mt-8">
-          Raast payment se bharein — zero transaction fee ⚡
-        </p>
-      </div>
-    </Section>
-  )
-}
-
-// ── FAQ ───────────────────────────────────────────────────────────
-function FAQ() {
-  const [openIdx, setOpenIdx] = useState<number | null>(null)
-
-  return (
-    <Section id="faq" className="py-20 lg:py-28 bg-slate-50">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <div className="inline-block bg-slate-200 text-slate-700 text-xs font-bold
-                          px-4 py-2 rounded-full mb-4 uppercase tracking-wide">
-            FAQ
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">
-            Aksar Pooche Jaane Wale Sawalat
-          </h2>
-        </div>
-
-        <div className="space-y-3">
-          {FAQS.map((faq, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden
-                         transition-all hover:border-blue-200"
-            >
-              <button
-                onClick={() => setOpenIdx(openIdx === i ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left"
-              >
-                <span className="font-semibold text-slate-800 text-sm pr-4">
-                  {faq.q}
-                </span>
-                {openIdx === i
-                  ? <ChevronUp size={18} className="text-blue-600 shrink-0" />
-                  : <ChevronDown size={18} className="text-slate-400 shrink-0" />
-                }
-              </button>
-              {openIdx === i && (
-                <div className="px-5 pb-4 border-t border-slate-100">
-                  <p className="text-slate-500 text-sm leading-relaxed pt-3">{faq.a}</p>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </Section>
-  )
-}
-
 // ── CTA BANNER ────────────────────────────────────────────────────
 function CTABanner() {
   return (
@@ -994,8 +653,8 @@ function CTABanner() {
           Aaj Hi Shuru Karein
         </h2>
         <p className="text-blue-200 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
-          14 din free trial. Koi card nahi chahiye. Cancel kab bhi karein.
-          Pakistan ke 500+ tailors already use kar rahe hain.
+          🌱 Free plan hamesha free. ⭐ Professional plan 14 din free trial.
+          Koi card nahi chahiye. Cancel kab bhi karein.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
@@ -1020,11 +679,11 @@ function CTABanner() {
         <p className="text-slate-500 text-sm mt-6">
           Questions? WhatsApp:{' '}
           <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135931459'}`}
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135634667'}`}
             target="_blank" rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135931459'}
+            {process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135634667'}
           </a>
         </p>
       </div>
@@ -1057,8 +716,8 @@ function ContactSection() {
                 {
                   icon: MessageCircle,
                   label: 'WhatsApp',
-                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135931459',
-                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135931459'}`,
+                  value: process.env.NEXT_PUBLIC_ADMIN_WHATSAPP ?? '03135634667',
+                  href:  `https://wa.me/${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_LINK ?? '923135634667'}`,
                   color: 'bg-green-100 text-green-600',
                 },
                 {
@@ -1113,7 +772,12 @@ export default function LandingPage() {
     <div className="scroll-smooth">
       <SoftwareAppSchema />
       <ReviewSchema />
-      <FAQSchema faqs={FAQS.map(f => ({ q: f.q, a: f.a }))} />
+      <HowToSchema />
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.meradarzi.pk" },
+        ]}
+      />
       <WebPageSchema
         title="Mera Darzi - Best Tailor Management Software in Pakistan"
         description="Pakistan's leading tailor management software for darzis and boutiques."
@@ -1123,11 +787,27 @@ export default function LandingPage() {
       <Hero />
       <Features />
       <HowItWorks />
-      <Stats />
+      <StatsSection />
       <Benefits />
       <Testimonials />
-      <Pricing />
-      <FAQ />
+      <Section id="pricing" className="py-20 lg:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PricingCards />
+        </div>
+      </Section>
+      <Section id="faq" className="py-20 lg:py-28 bg-slate-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <div className="inline-block bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2 rounded-full mb-4 uppercase tracking-wide">
+              FAQ
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">
+              Aksar Pooche Jaane Wale Sawalat
+            </h2>
+          </div>
+          <FAQ faqs={FAQS} />
+        </div>
+      </Section>
       <CTABanner />
       <ContactSection />
     </div>
