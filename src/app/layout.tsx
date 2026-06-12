@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import { Navbar } from "@/components/landing/Navbar";
+import { ScrollToTop } from "@/components/landing/ScrollToTop";
 import { Footer } from "@/components/landing/Footer";
 import { Poppins } from "next/font/google";
 import { OrganizationSchema } from "@/components/seo/JsonLd";
@@ -143,6 +144,7 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <ScrollToTop />
           <Analytics />
         </>
       </body>
