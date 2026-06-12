@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: '/#how-it-works', label: 'How It Works' },
   { href: '/#pricing', label: 'Pricing' },
   { href: '#', label: 'Cities', hasDropdown: true },
+  { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ]

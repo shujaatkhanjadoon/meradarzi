@@ -16,12 +16,12 @@ export function SoftwareAppSchema() {
       "@type": "AggregateOffer",
       priceCurrency: "PKR",
       lowPrice: "0",
-      highPrice: "2499",
+      highPrice: "999",
       offerCount: "3",
       offers: [
         { "@type": "Offer", name: "Starter", price: "0", priceCurrency: "PKR" },
-        { "@type": "Offer", name: "Professional", price: "999", priceCurrency: "PKR" },
-        { "@type": "Offer", name: "Business", price: "2499", priceCurrency: "PKR" },
+        { "@type": "Offer", name: "Professional", price: "499", priceCurrency: "PKR" },
+        { "@type": "Offer", name: "Business", price: "999", priceCurrency: "PKR" },
       ],
     },
     aggregateRating: {

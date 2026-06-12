@@ -267,7 +267,7 @@ const FAQS = [
   },
   {
     q: 'Pakistan mein payment kaise karein?',
-    a: 'QR scan, Raast ID, Easypaisa aur JazzCash — sab available hain. Raast ID se zero transaction fee. Payment screenshot submit karein ya QR scan karein, admin verify kare ga aur subscription active ho jayegi. Professional Rs. 999/month ya Rs. 9,999/year. Business Rs. 2,499/month ya Rs. 25,000/year. Yearly plan mein 17% bachat!',
+    a: 'QR scan, Raast ID, Easypaisa aur JazzCash — sab available hain. Raast ID se zero transaction fee. Payment screenshot submit karein ya QR scan karein, admin verify kare ga aur subscription active ho jayegi. Professional Rs. 499/month ya Rs. 4,999/year. Business Rs. 999/month ya Rs. 9,999/year. Yearly plan mein 2 months free — sirf 10 months ki payment!',
   },
   {
     q: 'Kya mobile number ke bina chal sakta hai?',

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CITIES } from "@/lib/cities";
+import { BLOG_POSTS } from "@/lib/blog";
 
 const BASE_URL = "https://www.meradarzi.pk";
 
@@ -9,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/about`, priority: 0.7, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/contact`, priority: 0.6, changeFrequency: "monthly" as const },
     { url: `${BASE_URL}/cities`, priority: 0.9, changeFrequency: "weekly" as const },
+    { url: `${BASE_URL}/blog`, priority: 0.9, changeFrequency: "weekly" as const },
     { url: `${BASE_URL}/privacy-policy`, priority: 0.3, changeFrequency: "yearly" as const },
     { url: `${BASE_URL}/refund-policy`, priority: 0.3, changeFrequency: "yearly" as const },
     { url: `${BASE_URL}/terms-and-conditions`, priority: 0.3, changeFrequency: "yearly" as const },
@@ -20,5 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  return [...staticPages, ...cityPages];
+  const blogPages = BLOG_POSTS.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  }));
+
+  return [...staticPages, ...cityPages, ...blogPages];
 }

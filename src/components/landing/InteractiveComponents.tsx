@@ -113,7 +113,7 @@ const MONTHLY_PLANS: Plan[] = [
   },
   {
     name: "Professional", icon: "⭐",
-    priceMonthly: "Rs. 999", priceYearly: "Rs. 9,999",
+    priceMonthly: "Rs. 499", priceYearly: "Rs. 4,999",
     priceLabel: "per month",
     badge: "Most Popular", badgeStyle: "bg-blue-600",
     color: "border-blue-500 ring-2 ring-blue-500",
@@ -123,7 +123,7 @@ const MONTHLY_PLANS: Plan[] = [
   },
   {
     name: "Business", icon: "👑",
-    priceMonthly: "Rs. 2,499", priceYearly: "Rs. 25,000",
+    priceMonthly: "Rs. 999", priceYearly: "Rs. 9,999",
     priceLabel: "per month",
     badge: null, badgeStyle: "",
     color: "border-purple-300",
@@ -144,7 +144,7 @@ const YEARLY_PLANS: Plan[] = [
   },
   {
     name: "Professional", icon: "⭐",
-    priceMonthly: "Rs. 999", priceYearly: "Rs. 9,999",
+    priceMonthly: "Rs. 499", priceYearly: "Rs. 4,999",
     priceLabel: "per year",
     badge: "Best Value", badgeStyle: "bg-green-600",
     color: "border-blue-500 ring-2 ring-blue-500",
@@ -154,7 +154,7 @@ const YEARLY_PLANS: Plan[] = [
   },
   {
     name: "Business", icon: "👑",
-    priceMonthly: "Rs. 2,499", priceYearly: "Rs. 25,000",
+    priceMonthly: "Rs. 999", priceYearly: "Rs. 9,999",
     priceLabel: "per year",
     badge: null, badgeStyle: "",
     color: "border-purple-300",
@@ -206,7 +206,7 @@ export function PricingCards() {
           >
             👑 Yearly
             <span className="ml-1.5 bg-green-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
-              Save 17%
+              2 Months Free
             </span>
           </button>
         </div>
@@ -218,8 +218,8 @@ export function PricingCards() {
           const displayPrice = isFree ? "Free" : (annual ? plan.priceYearly : plan.priceMonthly)
           const savings = !isFree && annual ? (
             plan.name === "Professional"
-              ? "Rs. 1,989 bachat! (17% save)"
-              : "Rs. 4,988 bachat! (17% save)"
+              ? "Rs. 989 bachat! (2 months free — 16% save)"
+              : "Rs. 1,989 bachat! (2 months free — 17% save)"
           ) : null
 
           return (
@@ -277,7 +277,7 @@ export function PricingCards() {
                 {!isFree && (
                   <p className="text-center text-[10px] text-slate-400">
                     {annual
-                      ? `Billed annually — ${plan.name === "Professional" ? "Rs. 9,999/yr" : "Rs. 25,000/yr"}`
+                      ? `Billed annually — ${plan.name === "Professional" ? "Rs. 4,999/yr" : "Rs. 9,999/yr"}`
                       : plan.name === "Professional" ? "⭐ Most Popular" : plan.badgeTag ?? ""
                     }
                   </p>
