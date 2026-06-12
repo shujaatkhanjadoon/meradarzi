@@ -6,6 +6,7 @@ import {
   Smartphone, Zap,
   Clock, TrendingUp, Heart, MessageCircle, Mail, Globe, CheckCircle2,
 } from 'lucide-react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { SoftwareAppSchema, ReviewSchema, WebPageSchema, HowToSchema, BreadcrumbSchema } from '@/components/seo/JsonLd'
 import { ContactForm } from '@/components/ContactForm'
@@ -18,51 +19,123 @@ import { Section, PricingCards, StatsSection, FAQ } from '@/components/landing/I
 const FEATURES = [
   {
     icon:  Package,
-    title: 'Order + QR Tracking',
-    desc:  'Har order ka real-time status aur unique QR code. Customer scan kare aur khud track kare.',
+    title: 'Digital Order Management',
+    desc:  'Create & track all orders digitally. Har order safe, har order trackable — kabhi gum nahi.',
     color: 'text-blue-600', bg: 'bg-blue-50',
   },
   {
     icon:  Users,
-    title: 'Karigar Management',
-    desc:  'Karigars ko orders assign karein. Unka kaam track karein. Salary reports banayein.',
+    title: 'Customer Directory',
+    desc:  'Full customer database with order history. Ek tap mein gahak ka sara record — name, phone, total orders.',
     color: 'text-green-600', bg: 'bg-green-50',
   },
   {
     icon:  CreditCard,
-    title: 'Payment Tracking',
-    desc:  'Cash, Easypaisa, JazzCash — sab payments track karein. Baaki automatically calculate.',
+    title: 'Advance & Balance Tracking',
+    desc: 'Cash, QR scan, Raast ID, Easypaisa, JazzCash — sab payments track karein. Baaki automatically calculate, kabhi confusion nahi.',
     color: 'text-amber-600', bg: 'bg-amber-50',
   },
   {
     icon:  Smartphone,
-    title: 'Measurements + Photos',
-    desc:  'Gahak ke nap aur kapra photos ek jagah. Kabhi bhoolo nahi kaun si shirt kis ki hai.',
+    title: 'Garment Measurements + Photos',
+    desc:  'Salwar kameez, sherwani, kurti — har kapre ke alag nap fields. Photos store karein fabric aur design ki.',
     color: 'text-purple-600', bg: 'bg-purple-50',
   },
   {
     icon:  Wifi,
-    title: 'Offline Support',
+    title: 'Offline Mode',
     desc:  'Internet band ho to bhi kaam jari rahe. Data automatically sync jab internet aaye.',
     color: 'text-teal-600', bg: 'bg-teal-50',
   },
   {
     icon:  BarChart2,
     title: 'Reports & Analytics',
-    desc:  'Monthly income, popular garments, best customers — sab ek jagah. Data se samjhein.',
+    desc:  'Monthly income, popular garments, best customers — sab ek jagah. Data se samjhein aur business grow karein.',
     color: 'text-red-600', bg: 'bg-red-50',
   },
   {
     icon:  MessageCircle,
     title: 'WhatsApp Notifications',
-    desc:  'Order ready hone par customer ko auto WhatsApp message. Manual ya auto dono.',
+    desc:  'Order ready hone par customer ko WhatsApp message. Auto ya manual — aapki marzi.',
     color: 'text-green-600', bg: 'bg-green-50',
   },
   {
     icon:  Globe,
-    title: 'Cloud Database',
-    desc:  'Phone kho jaye to bhi naya phone pe sab data wapas. Cloud backup always on.',
+    title: 'Urdu / English Support',
+    desc:  'Apni zaban mein kaam karein. Poori tarah English aur Urdu dono mein available.',
     color: 'text-slate-600', bg: 'bg-slate-50',
+  },
+  {
+    icon:  CreditCard,
+    title: 'Invoice Generator',
+    desc:  'Professional PDF invoices. Gahak ko digital receipt dein — koi paper slip nahi.',
+    color: 'text-indigo-600', bg: 'bg-indigo-50',
+  },
+  {
+    icon:  Users,
+    title: 'Team (Karigar) Management',
+    desc:  'Karigars ko orders assign karein. Har karigar ka workload track karein. Salary reports banayein.',
+    color: 'text-emerald-600', bg: 'bg-emerald-50',
+  },
+  {
+    icon:  Package,
+    title: 'Customer Tracking Link',
+    desc:  'Har order ka unique QR code + link. Gahak khud scan kare aur bina login dekhe order ka status.',
+    color: 'text-rose-600', bg: 'bg-rose-50',
+  },
+  {
+    icon:  BarChart2,
+    title: 'Bulk Orders',
+    desc:  'Ek gahak ke liye ek saath kai orders. Family orders, school uniforms — sab ek jagah.',
+    color: 'text-cyan-600', bg: 'bg-cyan-50',
+  },
+]
+
+const USPS = [
+  {
+    icon: '🇵🇰',
+    title: "Pakistan ka Pehla Tailor-Specific App",
+    desc: "Designed for Pakistani tailors, not generic business software — har feature aapki zaroorat ke hisaab se.",
+  },
+  {
+    icon: '🌙',
+    title: "Full Urdu Support",
+    desc: "Poori tarah Urdu mein istemal karein. Zaban ki rukawat nahi — jo chahein, jis zaban mein chahein.",
+  },
+  {
+    icon: '📴',
+    title: "Offline Mode",
+    desc: "Pakistan mein network aata jaata rehta hai — MeraDarzi wahi kaam karta hai. Koi order rukta nahi, koi data nahi khota.",
+  },
+  {
+    icon: '🎁',
+    title: "Free to Start",
+    desc: "Koi credit card nahi, koi commitment nahi. 30 orders/month free — bad mein decide karein.",
+  },
+  {
+    icon: '🔗',
+    title: "Customer Tracking Link",
+    desc: "Gahak khud order ka status dekh sakta hai. Aapko phone nahi karna padta — woh khud check kare.",
+  },
+  {
+    icon: '👔',
+    title: "Garment-Specific Measurements",
+    desc: "Kurti, sherwani, shalwar, lehenge — har kapre ke nap alag se set hain. tailor ko koi general form nahi bharna padta.",
+  },
+  {
+    icon: '💰',
+    title: "Baaki Payment Tracking",
+    desc: "Kitna diya, kitna baaki — auto calculate. Kabhi confusion nahi, kabhi hisaab nahi bigra.",
+  },
+  {
+    icon: '💳',
+    title: "Easypaisa / JazzCash / Raast Payments",
+    desc: "QR scan, Raast ID, Easypaisa, JazzCash — Pakistani payment methods. No international cards needed — jo aap roz use karte hain, wohi.",
+  },
+  {
+    icon: '📱',
+    title: "PWA — No App Store Needed",
+    desc: "Browser se directly mobile par install karein. Play Store ki zaroorat nahi, storage bhi free.",
   },
 ]
 
@@ -71,28 +144,28 @@ const STEPS = [
     num:   '01',
     icon:  Smartphone,
     title: 'Free Account Banayein',
-    desc:  'Phone number daalein, dukaan ka naam likhein. 2 minute mein ready.',
+    desc:  'Phone number daalein, dukaan ka naam likhein. 2 minute mein ready. Koi credit card nahi chahiye.',
     color: 'from-blue-500 to-blue-600',
   },
   {
     num:   '02',
     icon:  Package,
     title: 'Orders Add Karein',
-    desc:  'Gahak ki nap, kapra details, delivery date — sab ek form mein.',
+    desc:  'Gahak ki nap, kapra details, delivery date, photos — sab ek form mein fill karein.',
     color: 'from-purple-500 to-purple-600',
   },
   {
     num:   '03',
     icon:  Users,
     title: 'Karigar Ko Assign Karein',
-    desc:  'Kaunsa karigar kya karega? Assign karein aur track karein.',
+    desc:  'Kaunsa karigar kya karega? Assign karein aur progress track karein.',
     color: 'from-amber-500 to-amber-600',
   },
   {
     num:   '04',
     icon:  CheckCircle2,
-    title: 'Deliver Karein & Earn Karein',
-    desc:  'Order deliver ho, payment record ho, customer happy ho. Shukriya!',
+    title: 'Delivery & Customer Tracking',
+    desc:  'Customer ko QR/link dein. Woh khud status check karein. Payment ho, order complete.',
     color: 'from-green-500 to-green-600',
   },
 ]
@@ -101,25 +174,25 @@ const BENEFITS = [
   {
     icon:  Clock,
     title: 'Waqt Bachayein',
-    desc:  'Diary aur register ki zaroorat nahi. Orders aur payments digital ho jayein.',
+    desc:  'Diary aur register ki zaroorat nahi. Orders aur payments digital ho jayein. Koi paper slip gum nahi hogi.',
     color: 'text-blue-600', bg: 'bg-blue-100',
   },
   {
     icon:  TrendingUp,
     title: 'Business Grow Karein',
-    desc:  'Data se samjhein kya popular hai, kaun best karigar hai, kab income zyada hoti hai.',
+    desc:  'Data se samjhein kya popular hai, kaun best karigar hai, kab income zyada hoti hai. Reports se seekhein.',
     color: 'text-green-600', bg: 'bg-green-100',
   },
   {
     icon:  Heart,
     title: 'Customers Ko Khush Rakhein',
-    desc:  'QR tracking se customers khud status check karein. Calls km, trust zyada.',
+    desc:  'QR tracking link se customers khud order status check karein. Aap ko phone call nahi karna padega.',
     color: 'text-red-600', bg: 'bg-red-100',
   },
   {
     icon:  Zap,
-    title: 'Kabhi Data Loss Nahi',
-    desc:  'Phone kho jaye to bhi naya phone pe sab data wapas. Cloud backup always on.',
+    title: 'Mobile PWA — No App Store',
+    desc:  'Browser se directly mobile par install karein. Play Store ki zaroorat nahi. Android, iPhone sab par chale.',
     color: 'text-amber-600', bg: 'bg-amber-100',
   },
 ]
@@ -161,6 +234,10 @@ const TESTIMONIALS = [
 
 const FAQS = [
   {
+    q: 'MeraDarzi kya hai?',
+    a: 'MeraDarzi Pakistan ka tailor management app hai jo tailor shops, boutiques aur darzi ki dukano ko digital banata hai. Orders, gahak, payments aur karigar — sab ek app mein manage karein.',
+  },
+  {
     q: 'Kya yeh app bilkul free hai?',
     a: 'Haan! 🌱 Starter plan hamesha free hai — 30 orders/month, 50 customers, measurements aur payments track karein. Zyada orders aur features ke liye ⭐ Professional ya 👑 Business plan lein.',
   },
@@ -170,23 +247,47 @@ const FAQS = [
   },
   {
     q: 'Customers order kaise track karte hain?',
-    a: 'Har order ka unique QR code hota hai. Customer QR scan kare ya tracking link khole — real-time status dikhe ga without any login.',
+    a: 'Har order ka unique QR code hota hai. Customer QR scan kare ya tracking link khole — real-time status dikhe ga without any login. Aap ko phone call nahi karna padega.',
+  },
+  {
+    q: 'Kya yeh mobile app hai? Play Store pe milega?',
+    a: 'MeraDarzi ek Progressive Web App (PWA) hai. Aap browser se directly mobile phone par install kar sakte hain — Play Store ki zaroorat nahi. Android aur iPhone dono pe kaam karta hai.',
+  },
+  {
+    q: 'Kya yeh Urdu mein chal sakta hai?',
+    a: 'Jee haan! MeraDarzi poori tarah English aur Urdu dono mein available hai. Aap apni pasand ki zaban choose kar sakte hain.',
   },
   {
     q: 'Kya ek se zyada device pe use kar sakte hain?',
-    a: 'Haan! Professional aur Business plan mein multiple devices pe same account use kar sakte hain. Ghar pe laptop, dukaan pe phone — sab sync.',
+    a: 'Ek shop account ek hi phone par chalta hai. Agar device change karna hai to naye phone par PIN se login karein, purana apne aap logout ho jayega — data safe aur sync rahega.',
   },
   {
     q: 'Data safe hai? Koi aur dekh to nahi sakta?',
-    a: 'Bilkul safe. Aapka data sirf aapka hai. Bank-level encryption, Supabase secure servers. Hum kabhi data share nahi karte.',
+    a: 'Bilkul safe. Aapka data sirf aapka hai. Supabase cloud server par encrypted store hota hai. Hum kabhi data share nahi karte.',
   },
   {
     q: 'Pakistan mein payment kaise karein?',
-    a: 'Raast ID se payment karein — transaction fee zero. Professional Rs. 999/month ya Rs. 9,999/year. Business Rs. 2,499/month ya Rs. 25,000/year. Yearly plan mein 17% bachat!',
+    a: 'QR scan, Raast ID, Easypaisa aur JazzCash — sab available hain. Raast ID se zero transaction fee. Payment screenshot submit karein ya QR scan karein, admin verify kare ga aur subscription active ho jayegi. Professional Rs. 999/month ya Rs. 9,999/year. Business Rs. 2,499/month ya Rs. 25,000/year. Yearly plan mein 17% bachat!',
   },
   {
-    q: 'Play Store pe kab aayega?',
-    a: 'Abhi browser se use karein. Koi installation nahi chahiye. Link open karein aur shuru karein. Android aur iPhone dono pe kaam karta hai.',
+    q: 'Kya mobile number ke bina chal sakta hai?',
+    a: 'Nahi, shop registration ke liye Pakistani mobile number zaroori hai. Yeh security aur account recovery ke liye hai.',
+  },
+  {
+    q: 'Kaise login karein?',
+    a: 'Apna mobile number enter karein, OTP verify karein, aur apna 6-digit PIN set karein. Har baar login PIN se hoga.',
+  },
+  {
+    q: 'Kya data export kar sakte hain?',
+    a: 'Haan! Aap apne orders aur customers ka data CSV format mein export kar sakte hain. Orders ke PDF invoices bhi bana sakte hain.',
+  },
+  {
+    q: 'Plan upgrade kaise karein?',
+    a: 'Settings > Billing mein ja kar upgrade button se koi bhi plan choose kar sakte hain. Difference amount ka prorata calculate ho ga.',
+  },
+  {
+    q: 'Cancel kaise karein?',
+    a: 'Settings > Billing > Cancel Subscription se cancel kar sakte hain. Aap current billing period ke end tak services use kar sakte hain.',
   },
 ]
 
@@ -238,7 +339,7 @@ function Hero() {
             <p className="text-lg sm:text-xl text-slate-300 mb-8 leading-relaxed max-w-xl
                           mx-auto lg:mx-0">
               Orders track karein, customers manage karein, karigars assign karein
-              — sab ek jagah. <strong className="text-white">Offline bhi kaam karta hai.</strong>
+              — sab ek app mein. <strong className="text-white">Offline bhi chale, mobile PWA bhi hai.</strong>
             </p>
 
             {/* CTAs */}
@@ -251,7 +352,7 @@ function Hero() {
                            text-base transition-all shadow-xl shadow-blue-900/50
                            hover:shadow-blue-600/40 active:scale-95"
               >
-                Free Shuru Karein
+                Aaj Hi Shuru Karein — Free
                 <ArrowRight size={18} />
               </Link>
               <a
@@ -261,20 +362,33 @@ function Hero() {
                            rounded-2xl text-base border border-white/20 transition-all
                            backdrop-blur-sm"
               >
-                Demo Dekhein
+                Aur Janne Ke Liye
               </a>
             </div>
 
-            {/* Trust indicators */}
-            <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start">
+            {/* Login link */}
+            <div className="mt-3 text-center lg:text-left">
+              <a
+                href="https://app.meradarzi.pk/"
+                target="_blank"
+                className="text-slate-500 text-sm hover:text-blue-400 transition-colors"
+              >
+                Existing user? <span className="font-semibold">Yahan Login Karein</span>
+              </a>
+            </div>
+
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center gap-3 justify-center lg:justify-start">
               {[
-                { icon: '✓', text: 'Free forever plan'    },
-                { icon: '✓', text: 'No credit card needed' },
-                { icon: '✓', text: 'Offline support'       },
+                { icon: '🇵🇰', text: 'Made in Pakistan'  },
+                { icon: '✅', text: '500+ Active Tailors'  },
+                { icon: '⭐', text: '4.8 ★ Average Rating' },
+                { icon: '📱', text: 'PWA — Works on All Phones' },
+                { icon: '🌙', text: 'اردو میں بھی دستیاب' },
               ].map(t => (
                 <div key={t.text}
-                  className="flex items-center gap-1.5 text-slate-400 text-sm">
-                  <span className="text-green-400 font-bold">{t.icon}</span>
+                  className="flex items-center gap-1.5 text-slate-400 text-xs">
+                  <span className="text-base">{t.icon}</span>
                   {t.text}
                 </div>
               ))}
@@ -405,6 +519,10 @@ function AppMockup() {
                       shadow-xl shadow-black/20">
         <p className="text-xs font-bold text-slate-700">📱 Works Offline</p>
       </div>
+      <div className="absolute -left-6 bottom-36 bg-white rounded-2xl px-3 py-2
+                      shadow-xl shadow-black/20">
+        <p className="text-xs font-bold text-slate-700">🌐 PWA — Install from Browser</p>
+      </div>
     </div>
   )
 }
@@ -445,6 +563,43 @@ function Features() {
               </div>
               <h3 className="font-bold text-slate-800 text-base mb-2">{f.title}</h3>
               <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  )
+}
+
+// ── UNIQUE SELLING POINTS ────────────────────────────────────────
+function USPs() {
+  return (
+    <Section className="py-20 lg:py-28 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <div className="inline-block bg-amber-100 text-amber-700 text-xs font-bold
+                          px-4 py-2 rounded-full mb-4 uppercase tracking-wide">
+            Why Mera Darzi
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-4">
+            Sirf MeraDarzi Mein Hai
+          </h2>
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+            Aisi features jo kisi aur app mein nahi milengi. Khas tor par Pakistani tailors ke liye.
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {USPS.map((usp) => (
+            <div
+              key={usp.title}
+              className="bg-white rounded-3xl p-6 border border-slate-100
+                         hover:border-amber-200 hover:shadow-xl hover:-translate-y-1
+                         transition-all duration-300"
+            >
+              <div className="text-3xl mb-3">{usp.icon}</div>
+              <h3 className="font-bold text-slate-800 text-base mb-2">{usp.title}</h3>
+              <p className="text-slate-500 text-sm leading-relaxed">{usp.desc}</p>
             </div>
           ))}
         </div>
@@ -582,6 +737,117 @@ function Benefits() {
   )
 }
 
+// ── SCREENSHOTS ──────────────────────────────────────────────────
+function DesktopMockup({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden
+                    hover:shadow-xl transition-shadow">
+      {/* Browser chrome */}
+      <div className="bg-slate-100 px-4 py-2.5 flex items-center gap-2 border-b border-slate-200">
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-400" />
+          <div className="w-3 h-3 rounded-full bg-amber-400" />
+          <div className="w-3 h-3 rounded-full bg-green-400" />
+        </div>
+        <div className="flex-1 max-w-md mx-auto">
+          <div className="bg-white rounded-md px-3 py-1 text-[10px] text-slate-400
+                          text-center truncate border border-slate-200">
+            app.meradarzi.pk
+          </div>
+        </div>
+      </div>
+      {/* Screenshot */}
+      <Image
+        src={src}
+        alt={alt}
+        width={1280}
+        height={850}
+        className="w-full h-auto"
+      />
+    </div>
+  )
+}
+
+function PhoneMockup({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="bg-slate-900 rounded-[2.5rem] p-2.5 shadow-xl border border-slate-700
+                    hover:shadow-2xl transition-shadow mx-auto w-fit">
+      <div className="bg-slate-950 rounded-[2.25rem] overflow-hidden">
+        {/* Status bar */}
+        <div className="bg-slate-900 px-5 pt-2 pb-1 flex justify-between items-center">
+          <span className="text-white text-[10px] font-semibold">9:41</span>
+          <div className="w-16 h-4 bg-slate-800 rounded-full" />
+          <div className="flex gap-1 items-center">
+            <div className="w-1 h-1.5 rounded-sm bg-white" />
+            <div className="w-1 h-2 rounded-sm bg-white" />
+            <div className="w-1 h-3 rounded-sm bg-white" />
+          </div>
+        </div>
+        <Image
+          src={src}
+          alt={alt}
+          width={390}
+          height={844}
+          className="h-auto w-[260px] sm:w-[280px]"
+        />
+      </div>
+    </div>
+  )
+}
+
+function Screenshots() {
+  return (
+    <Section className="py-20 lg:py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14">
+          <div className="inline-block bg-purple-100 text-purple-700 text-xs font-bold
+                          px-4 py-2 rounded-full mb-4 uppercase tracking-wide">
+            Screenshots
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 mb-4">
+            Ek Nazar Mein Dekhein
+          </h2>
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+            Desktop par ho ya mobile — experience same, seamless
+          </p>
+        </div>
+
+        {/* Desktop screenshots */}
+        <div className="mb-14">
+          <h3 className="text-center font-bold text-slate-800 text-xl mb-8">
+            <span className="inline-block align-middle mr-1.5">🖥️</span>
+            <span className="inline-block align-middle">Desktop View</span>
+          </h3>
+          <div className="grid sm:grid-cols-2 gap-5">
+            <DesktopMockup src="/screenshots/desktop-dashboard.svg" alt="Mera Darzi Dashboard - Order Management" />
+            <DesktopMockup src="/screenshots/desktop-orders.svg" alt="Mera Darzi Orders - Tracking Orders" />
+            <DesktopMockup src="/screenshots/desktop-customers.svg" alt="Mera Darzi Customer Directory" />
+            <DesktopMockup src="/screenshots/desktop-new-order-step2.svg" alt="Mera Darzi New Order - Measurements" />
+          </div>
+        </div>
+
+        {/* Mobile screenshots */}
+        <div>
+          <h3 className="text-center font-bold text-slate-800 text-xl mb-2">
+            <span className="inline-block align-middle mr-1.5">📱</span>
+            <span className="inline-block align-middle">Mobile View — PWA</span>
+          </h3>
+          <p className="text-slate-500 text-sm text-center mb-8 max-w-xl mx-auto">
+            Browser se directly mobile par install karein. Play Store ki zaroorat nahi.
+            Android aur iPhone dono pe perfectly chalta hai.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <PhoneMockup src="/screenshots/mobile-dashboard.svg" alt="Mera Darzi Mobile Dashboard" />
+            <PhoneMockup src="/screenshots/mobile-orders.svg" alt="Mera Darzi Mobile Orders" />
+            <PhoneMockup src="/screenshots/mobile-customers.svg" alt="Mera Darzi Mobile Customers" />
+            <PhoneMockup src="/screenshots/mobile-new-order-step2.svg" alt="Mera Darzi Mobile New Order" />
+          </div>
+        </div>
+      </div>
+    </Section>
+  )
+}
+
 // ── TESTIMONIALS ──────────────────────────────────────────────────
 function Testimonials() {
   return (
@@ -619,7 +885,7 @@ function Testimonials() {
               </div>
 
               <p className="text-slate-600 text-sm leading-relaxed mb-5 italic">
-                "{t.text}"
+                &ldquo;{t.text}&rdquo;
               </p>
 
               <div className="flex items-center gap-3">
@@ -664,7 +930,7 @@ function CTABanner() {
                        font-bold px-10 py-4 rounded-2xl text-base shadow-2xl
                        hover:bg-blue-50 transition-all active:scale-95"
           >
-            Free Account Banayein
+            Free Registration — 30 Orders Free
             <ArrowRight size={18} />
           </Link>
           <Link
@@ -673,7 +939,7 @@ function CTABanner() {
                        text-white font-semibold px-10 py-4 rounded-2xl text-base
                        hover:bg-white/10 transition-all"
           >
-            Support Se Baat Karein
+            VIP Demo Chahiye?
           </Link>
         </div>
         <p className="text-slate-500 text-sm mt-6">
@@ -779,17 +1045,19 @@ export default function LandingPage() {
         ]}
       />
       <WebPageSchema
-        title="Mera Darzi - Best Tailor Management Software in Pakistan"
-        description="Pakistan's leading tailor management software for darzis and boutiques."
+        title="Mera Darzi - Best Tailor Management Software in Pakistan | Free Tailor App"
+        description="Pakistan ka tailor management app. Orders, customers, payments aur karigar — sab ek app mein. Urdu/English. Free start. PWA — mobile par bhi chale."
         datePublished="2026-01-01"
         dateModified="2026-06-11"
       />
       <Hero />
       <Features />
+      <USPs />
       <HowItWorks />
       <StatsSection />
       <Benefits />
       <Testimonials />
+      <Screenshots />
       <Section id="pricing" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PricingCards />

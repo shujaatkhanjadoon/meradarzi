@@ -7,7 +7,22 @@ export const metadata: Metadata = {
   description: 'Mera Darzi refund policy — 7-day money-back guarantee. Agar aap santusht nahi hain to hum refund dete hain.',
   keywords: ['Mera Darzi refund', 'tailor software refund policy', 'money-back guarantee Pakistan'],
   alternates: {
-    canonical: '/refund-policy',
+    canonical: 'https://www.meradarzi.pk/refund-policy',
+  },
+  openGraph: {
+    title: 'Refund Policy | Mera Darzi',
+    description: 'Mera Darzi refund policy — 7-day money-back guarantee. Agar aap santusht nahi hain to hum refund dete hain.',
+    url: 'https://www.meradarzi.pk/refund-policy',
+    locale: 'en_US',
+    type: 'website',
+    images: [{ url: '/og-images/MeraDarzi.jpg', width: 1200, height: 630, alt: 'Mera Darzi Refund Policy' }],
+    siteName: 'Mera Darzi',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Refund Policy | Mera Darzi',
+    description: 'Mera Darzi refund policy — 7-day money-back guarantee.',
+    images: ['/og-images/MeraDarzi.jpg'],
   },
 }
 

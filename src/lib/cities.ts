@@ -454,7 +454,7 @@ export const CITIES: City[] = [
   {
     name: "Jhelum",
     slug: "jhelum",
-    province: "Punjab",
+    province: "Islamabad Capital Territory",
     shops: "10+",
     description:
       "Mera Darzi serves Jhelum's tailors with a comprehensive digital management solution. Order tracking, customer measurements, payment management, and karigar coordination made simple.",
@@ -468,7 +468,7 @@ export const CITIES: City[] = [
   {
     name: "Attock",
     slug: "attock",
-    province: "Punjab",
+    province: "Islamabad Capital Territory",
     shops: "5+",
     description:
       "Mera Darzi helps Attock tailors go digital. Order management, customer measurement records, payment tracking, and karigar assignment in one easy app. Free plan available.",
@@ -482,7 +482,7 @@ export const CITIES: City[] = [
   {
     name: "Taxila",
     slug: "taxila",
-    province: "Punjab",
+    province: "Islamabad Capital Territory",
     shops: "5+",
     description:
       "Mera Darzi serves Taxila's tailoring community with a complete digital management solution. Order tracking, customer measurements, and payment management made simple.",
@@ -496,7 +496,7 @@ export const CITIES: City[] = [
   {
     name: "Wah Cantt",
     slug: "wah-cantt",
-    province: "Punjab",
+    province: "Islamabad Capital Territory",
     shops: "5+",
     description:
       "Mera Darzi helps Wah Cantt tailors digitize their business. Customer management, order tracking, payment records — sab ek app mein. Works without internet and syncs when connected.",
@@ -519,6 +519,62 @@ export const CITIES: City[] = [
       "darzi app Khanewal",
       "tailor shop software Khanewal",
       "tailoring business software Khanewal",
+    ],
+  },
+  {
+    name: "Sargodha",
+    slug: "sargodha",
+    province: "Punjab",
+    shops: "50+",
+    description:
+      "Mera Darzi serves Sargodha's tailoring community with digital management. Order tracking, customer measurements, payment records, and karigar coordination — sab ek app mein. Free plan available.",
+    keywords: [
+      "tailor management software Sargodha",
+      "darzi app Sargodha",
+      "tailor shop software Sargodha",
+      "tailoring business software Sargodha",
+    ],
+  },
+  {
+    name: "Kasur",
+    slug: "kasur",
+    province: "Punjab",
+    shops: "20+",
+    description:
+      "Mera Darzi helps Kasur tailors digitize their business. Customer management, order tracking, payment records — sab ek app mein. Works without internet and syncs when connected.",
+    keywords: [
+      "tailor management software Kasur",
+      "darzi app Kasur",
+      "tailor shop software Kasur",
+      "tailoring business software Kasur",
+    ],
+  },
+  {
+    name: "Jhang",
+    slug: "jhang",
+    province: "Punjab",
+    shops: "20+",
+    description:
+      "Mera Darzi brings digital tailor management to Jhang. Manage orders, customer measurements, payments, and karigar assignment with offline-first technology. Free plan available.",
+    keywords: [
+      "tailor management software Jhang",
+      "darzi app Jhang",
+      "tailor shop software Jhang",
+      "tailoring business software Jhang",
+    ],
+  },
+  {
+    name: "Toba Tek Singh",
+    slug: "toba-tek-singh",
+    province: "Punjab",
+    shops: "10+",
+    description:
+      "Mera Darzi serves Toba Tek Singh's tailors with a complete digital management solution. Order tracking, customer measurements, payment management, and karigar coordination made simple.",
+    keywords: [
+      "tailor management software Toba Tek Singh",
+      "darzi app Toba Tek Singh",
+      "tailor shop software Toba Tek Singh",
+      "tailoring business software Toba Tek Singh",
     ],
   },
   {

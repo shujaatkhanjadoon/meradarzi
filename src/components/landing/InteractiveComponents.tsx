@@ -289,7 +289,7 @@ export function PricingCards() {
       </div>
 
       <p className="text-center text-slate-400 text-sm mt-8">
-        Raast payment se bharein — zero transaction fee ⚡
+        QR scan, Raast ID, Easypaisa, JazzCash — sab available ⚡
       </p>
     </div>
   )

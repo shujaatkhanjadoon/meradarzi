@@ -19,41 +19,41 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: {
     default:
-      "Mera Darzi - Best Tailor Management Software in Pakistan",
+      "Mera Darzi - Best Tailor Management Software in Pakistan | Free Tailor App",
     template: "%s | Mera Darzi - Tailor Management Software Pakistan",
   },
 
   description:
-    "Mera Darzi is Pakistan's leading tailor management software for darzis and boutiques. Manage orders, customer measurements, payments, stitching records, and delivery tracking all in one app. Free plan available.",
+    "Pakistan ka tailor management app. Orders, customers, payments aur karigar — sab ek app mein. Urdu/English. Free plan available. PWA — mobile par bhi chale, offline bhi kaam kare.",
 
   keywords: [
-    "tailor management software Pakistan",
-    "darzi app Pakistan",
-    "boutique management system Pakistan",
-    "tailor shop software Pakistan",
-    "measurement management app",
-    "stitching order management",
-    "fashion boutique software",
-    "customer measurement app",
-    "tailor business Pakistan",
+    "tailor management app Pakistan",
+    "darzi management software",
+    "tailor shop billing app",
+    "tailor management system Urdu",
+    "best tailor app Pakistan",
+    "tailor shop software free",
+    "tailor order management app",
+    "tailor business management",
+    "tailor shop billing software in Urdu",
+    "tailor management app for mobile",
+    "salwar kameez measurement app",
+    "tailor customer management system",
+    "tailor payment tracking app",
+    "tailor delivery date reminder app",
+    "tailor karigar management",
+    "tailor shop record keeping app",
+    "Pakistan tailor shop digital solution",
+    "boutique management app Pakistan",
+    "darzi kaam record app",
     "meradarzi",
-    "darzi software Pakistan",
-    "tailor POS system Pakistan",
-    "garment shop management software",
-    "order management software for tailors",
-    "tailoring business software",
-    "tailor management system Lahore",
-    "darzi app Karachi",
-    "boutique management software",
-    "tailor shop management system",
-    "tailor app Pakistan",
   ],
 
   openGraph: {
     title:
-      "Mera Darzi - Pakistan's #1 Tailor Management App",
+      "Mera Darzi - Best Tailor Management Software in Pakistan | Free Tailor App",
     description:
-      "Manage tailoring orders, customer measurements, payments, and delivery tracking with Mera Darzi — Pakistan's modern tailoring management solution. Free forever plan available.",
+      "Pakistan ka tailor management app. Orders, customers, payments aur karigar — sab ek app mein. Urdu/English. Free plan available. PWA — mobile par bhi chale, offline bhi kaam kare.",
     url: "https://www.meradarzi.pk/",
     siteName: "Mera Darzi",
     locale: "en_US",
@@ -66,7 +66,6 @@ export const metadata: Metadata = {
         alt: 'Mera Darzi - Tailor Management Software Pakistan',
       },
     ],
-    countryName: "Pakistan",
   },
 
   twitter: {
@@ -74,7 +73,7 @@ export const metadata: Metadata = {
     title:
       "Mera Darzi - Tailor Management Software Pakistan",
     description:
-      "All-in-one tailoring management system for darzis and boutiques in Pakistan. Free plan available.",
+      "Pakistan ka tailor management app. Orders, customers, payments aur karigar — sab ek app mein. Free start. PWA works on all phones.",
     images: ['/og-images/MeraDarzi.jpg'],
   },
 
@@ -88,6 +87,7 @@ export const metadata: Metadata = {
     canonical: "https://www.meradarzi.pk",
     languages: {
       "en-PK": "https://www.meradarzi.pk",
+      "ur-PK": "https://www.meradarzi.pk",
       "x-default": "https://www.meradarzi.pk",
     },
   },

@@ -6,7 +6,22 @@ export const metadata: Metadata = {
   description: 'Mera Darzi Privacy Policy — aapka data kaise protect hota hai, kaise collect hota hai, aur aapke kya rights hain.',
   keywords: ['Mera Darzi privacy policy', 'tailor software data privacy', 'Pakistan app privacy'],
   alternates: {
-    canonical: '/privacy-policy',
+    canonical: 'https://www.meradarzi.pk/privacy-policy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | Mera Darzi',
+    description: 'Mera Darzi Privacy Policy — aapka data kaise protect hota hai, kaise collect hota hai, aur aapke kya rights hain.',
+    url: 'https://www.meradarzi.pk/privacy-policy',
+    locale: 'en_US',
+    type: 'website',
+    images: [{ url: '/og-images/MeraDarzi.jpg', width: 1200, height: 630, alt: 'Mera Darzi Privacy Policy' }],
+    siteName: 'Mera Darzi',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | Mera Darzi',
+    description: 'Mera Darzi Privacy Policy — aapka data kaise protect hota hai.',
+    images: ['/og-images/MeraDarzi.jpg'],
   },
 }
 

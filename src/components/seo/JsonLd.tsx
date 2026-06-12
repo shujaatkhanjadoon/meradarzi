@@ -7,7 +7,7 @@ export function SoftwareAppSchema() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, Android, iOS",
     description:
-      "Pakistan's leading tailor management software. Manage orders, customer measurements, payments, karigar assignments, and delivery tracking.",
+      "Pakistan's leading tailor management software. Manage orders, customer measurements, payments, karigar assignments, and delivery tracking. Urdu/English. Works offline. PWA support.",
     url: "https://www.meradarzi.pk",
     sameAs: [
       "https://wa.me/923135634667",
@@ -36,14 +36,19 @@ export function SoftwareAppSchema() {
     },
     screenshot: "https://www.meradarzi.pk/icon-512.png",
     featureList: [
-      "Order Tracking with QR Code",
-      "Karigar Management",
-      "Payment Tracking",
-      "Measurements & Photos",
-      "Offline Support",
+      "Digital Order Management",
+      "Customer Directory with History",
+      "Advance & Balance Payment Tracking",
+      "Garment-Specific Measurements",
+      "Order Photos",
+      "Team / Karigar Management",
       "Reports & Analytics",
-      "WhatsApp Notifications",
-      "Cloud Database",
+      "Invoice Generator (PDF)",
+      "Customer Tracking Link & QR Code",
+      "Urdu & English Language Support",
+      "Offline Mode",
+      "Bulk Orders",
+      "PWA — Install from Browser",
     ],
   };
 
@@ -64,7 +69,7 @@ export function OrganizationSchema() {
     url: "https://www.meradarzi.pk",
     logo: "https://www.meradarzi.pk/logo.png",
     description:
-      "Pakistan's leading tailor management software for darzis and boutiques.",
+      "Pakistan's leading tailor management software for darzis and boutiques. Manage orders, customers, payments, and karigars. Urdu/English. Free plan available. PWA works on all phones.",
     address: {
       "@type": "PostalAddress",
       addressCountry: "PK",

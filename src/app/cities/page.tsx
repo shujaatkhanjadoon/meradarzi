@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { CITIES, PROVINCES } from "@/lib/cities";
+import { BreadcrumbSchema, WebPageSchema } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Tailor Management Software in Pakistani Cities | Mera Darzi",
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     "tailor shop Faisalabad",
   ],
   alternates: {
-    canonical: "/cities",
+    canonical: "https://www.meradarzi.pk/cities",
   },
   openGraph: {
     title: "Mera Darzi - Available in All Major Pakistani Cities",
@@ -36,8 +37,38 @@ export const metadata: Metadata = {
 };
 
 export default function CitiesIndexPage() {
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Pakistani Cities with Mera Darzi Tailor Management",
+    description: "Mera Darzi serves tailors and boutiques across Pakistani cities.",
+    numberOfItems: CITIES.length,
+    itemListElement: CITIES.map((city, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: city.name,
+      url: `https://www.meradarzi.pk/cities/${city.slug}`,
+    })),
+  }
+
   return (
     <div className="pt-16 min-h-screen bg-slate-50">
+      <BreadcrumbSchema
+        items={[
+          { name: "Home", url: "https://www.meradarzi.pk" },
+          { name: "Cities", url: "https://www.meradarzi.pk/cities" },
+        ]}
+      />
+      <WebPageSchema
+        title="Tailor Management Software in Pakistani Cities | Mera Darzi"
+        description="Mera Darzi is available in all major Pakistani cities. Find tailor management software for your city."
+        datePublished="2026-01-01"
+        dateModified="2026-06-11"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       <section className="bg-linear-to-br from-slate-900 to-blue-950 py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-5">

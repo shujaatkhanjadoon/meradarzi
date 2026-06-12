@@ -17,14 +17,21 @@ const NAV_LINKS = [
   { href: '/contact', label: 'Contact' },
 ]
 
-const ISLAMABAD_AREA = ["wah-cantt", "taxila", "jhelum", "attock"]
 const TOTAL_CITIES = Object.values(CITIES_BY_PROVINCE).reduce((sum, cities) => sum + cities.length, 0)
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const scrollPosRef = useRef(0)
   const [scrolled, setScrolled] = useState(false)
   const [citiesOpen, setCitiesOpen] = useState(false)
+  const [mobileCitiesOpen, setMobileCitiesOpen] = useState(false)
   const [mobileProvince, setMobileProvince] = useState<string | null>(null)
+
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false)
+    setMobileCitiesOpen(false)
+    setMobileProvince(null)
+  }, [])
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const citiesBtnRef = useRef<HTMLButtonElement>(null)
   const megaMenuRef = useRef<HTMLDivElement>(null)
@@ -62,6 +69,30 @@ export function Navbar() {
       if (timerRef.current) clearTimeout(timerRef.current)
     }
   }, [])
+
+  useEffect(() => {
+    const body = document.body
+    if (menuOpen) {
+      scrollPosRef.current = window.scrollY
+      body.style.overflow = 'hidden'
+      body.style.position = 'fixed'
+      body.style.top = `-${scrollPosRef.current}px`
+      body.style.width = '100%'
+    } else {
+      body.style.overflow = ''
+      body.style.position = ''
+      body.style.top = ''
+      body.style.width = ''
+      window.scrollTo(0, scrollPosRef.current)
+    }
+    return () => {
+      body.style.overflow = ''
+      body.style.position = ''
+      body.style.top = ''
+      body.style.width = ''
+      if (menuOpen) window.scrollTo(0, scrollPosRef.current)
+    }
+  }, [menuOpen])
 
   useEffect(() => {
     if (citiesOpen && citiesBtnRef.current) {
@@ -143,7 +174,7 @@ export function Navbar() {
                       ref={megaMenuRef}
                       role="dialog"
                       aria-label="Select your city"
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-white rounded-2xl shadow-xl border border-slate-100 p-6 z-50 max-w-[900px] w-max"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-1 bg-white rounded-2xl shadow-xl border border-slate-100 p-6 z-50 max-w-[1100px] w-max"
                       onMouseEnter={openCities}
                       onMouseLeave={closeCities}
                       onKeyDown={handleKeyDown}
@@ -212,7 +243,7 @@ export function Navbar() {
                               className="block px-3 py-1.5 text-sm font-semibold text-slate-600 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all">
                               Islamabad
                             </Link>
-                            {CITIES_BY_PROVINCE["Punjab"]?.filter((c) => ISLAMABAD_AREA.includes(c.slug)).map((city) => (
+                            {CITIES_BY_PROVINCE["Islamabad Capital Territory"]?.map((city) => city.slug !== "islamabad" && (
                               <Link key={city.slug} href={`/cities/${city.slug}`} onClick={() => setCitiesOpen(false)}
                                 className="block px-3 py-1.5 text-sm text-slate-600 hover:text-blue-600 rounded-lg hover:bg-blue-50 transition-all">
                                 {city.name}
@@ -253,7 +284,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            onClick={() => setMenuOpen(v => !v)}
+            onClick={() => { setMenuOpen(v => !v); if (menuOpen) { setMobileCitiesOpen(false); setMobileProvince(null) } }}
             className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-slate-100 text-slate-700 min-w-[44px] min-h-[44px]"
             aria-label="Toggle menu"
           >
@@ -261,21 +292,31 @@ export function Navbar() {
           </button>
         </div>
 
+        {/* Mobile backdrop */}
+        {menuOpen && (
+          <div
+            className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
+
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="lg:hidden bg-white border-t border-slate-100 py-4 max-h-[80vh] overflow-y-auto">
+          <div className="relative lg:hidden bg-white border-t border-slate-100 z-50 flex flex-col max-h-[80vh] shadow-xl">
+            <div className="overflow-y-auto flex-1 py-4">
             {NAV_LINKS.map(link => (
               link.hasDropdown ? (
                 <div key={link.label}>
                   <button
-                    onClick={() => setMobileProvince(mobileProvince === link.label ? null : link.label)}
-                    aria-expanded={mobileProvince === link.label}
+                    onClick={() => setMobileCitiesOpen(!mobileCitiesOpen)}
+                    aria-expanded={mobileCitiesOpen}
                     className="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-400 uppercase tracking-wide"
                   >
                     {link.label}
-                    <ChevronDown size={14} className={cn('transition-transform', mobileProvince === link.label && 'rotate-180')} />
+                    <ChevronDown size={20} className={cn('text-slate-700 transition-transform', mobileCitiesOpen && 'rotate-180')} />
                   </button>
-                  {mobileProvince === link.label && (
+                  {mobileCitiesOpen && (
                     <div className="space-y-0.5 pb-2">
                       {PROVINCES.map((province) => (
                         <div key={province}>
@@ -285,13 +326,13 @@ export function Navbar() {
                             className="w-full flex items-center justify-between px-6 py-2.5 text-xs font-bold text-slate-400 uppercase tracking-wider min-h-[44px]"
                           >
                             {province === "Islamabad Capital Territory" ? "Islamabad" : province}
-                            <ChevronDown size={12} className={cn('transition-transform', mobileProvince === province && 'rotate-180')} />
+                            <ChevronDown size={18} className={cn('text-slate-600 transition-transform', mobileProvince === province && 'rotate-180')} />
                           </button>
                           {mobileProvince === province && (
-                            <div className="ml-2">
+                            <div className="ml-2 border-l-2 border-slate-100 pl-3">
                               {CITIES_BY_PROVINCE[province].map((city) => (
-                                <Link key={city.slug} href={`/cities/${city.slug}`} onClick={() => setMenuOpen(false)}
-                                  className="block px-8 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px] flex items-center">
+                                <Link key={city.slug} href={`/cities/${city.slug}`} onClick={closeMenu}
+                                  className="block px-6 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px] flex items-center">
                                   {city.name}
                                 </Link>
                               ))}
@@ -299,23 +340,24 @@ export function Navbar() {
                           )}
                         </div>
                       ))}
-                      <Link href="/cities" onClick={() => setMenuOpen(false)}
-                        className="block px-8 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-xl transition-colors min-h-[44px] flex items-center">
+                      <Link href="/cities" onClick={closeMenu}
+                        className="block px-6 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50 rounded-xl transition-colors min-h-[44px] flex items-center">
                         View All Cities →
                       </Link>
                     </div>
                   )}
                 </div>
               ) : (
-                <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}
+                <a key={link.href} href={link.href} onClick={closeMenu}
                   className="block px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl transition-colors min-h-[44px] flex items-center">
                   {link.label}
                 </a>
               )
             ))}
-            <div className="pt-3 px-4 flex flex-col gap-2">
+            </div>
+            <div className="px-4 pb-4 pt-3 border-t border-slate-100 bg-white">
               <Link href="https://app.meradarzi.pk/" target="_blank"
-                className="w-full text-center bg-blue-600 text-white font-bold py-3.5 rounded-xl text-sm min-h-[44px] flex items-center justify-center">
+                className="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-sm min-h-[44px] flex items-center justify-center transition-colors">
                 Free Shuru Karein →
               </Link>
             </div>

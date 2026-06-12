@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     images: ['/og-images/MeraDarzi.jpg'],
   },
   alternates: {
-    canonical: '/contact',
+    canonical: 'https://www.meradarzi.pk/contact',
   },
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckCircle2, ArrowRight, Smartphone, Package, Users, CreditCard } from "lucide-react";
-import { OrganizationSchema, BreadcrumbSchema, LocalBusinessSchema, WebPageSchema } from "@/components/seo/JsonLd";
+import { BreadcrumbSchema, LocalBusinessSchema, WebPageSchema } from "@/components/seo/JsonLd";
 import { CITIES } from "@/lib/cities";
 
 export function generateStaticParams() {
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       images: ["/og-images/MeraDarzi.jpg"],
     },
     alternates: {
-      canonical: `/cities/${city.slug}`,
+      canonical: `https://www.meradarzi.pk/cities/${city.slug}`,
     },
   };
 }
@@ -53,7 +53,6 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
 
   return (
     <>
-      <OrganizationSchema />
       <LocalBusinessSchema city={city.name} province={city.province} shops={city.shops} />
       <WebPageSchema
         title={`Best Tailor Management Software in ${city.name} | Mera Darzi`}

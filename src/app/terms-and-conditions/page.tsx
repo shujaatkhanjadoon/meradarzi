@@ -6,7 +6,22 @@ export const metadata: Metadata = {
   description: 'Mera Darzi terms and conditions — service ke istemal ke qawaneen aur shartat. Account registration, payments, aur data ownership ke baare mein.',
   keywords: ['Mera Darzi terms', 'tailor software terms Pakistan', 'service conditions'],
   alternates: {
-    canonical: '/terms-and-conditions',
+    canonical: 'https://www.meradarzi.pk/terms-and-conditions',
+  },
+  openGraph: {
+    title: 'Terms & Conditions | Mera Darzi',
+    description: 'Mera Darzi terms and conditions — service ke istemal ke qawaneen aur shartat. Account registration, payments, aur data ownership.',
+    url: 'https://www.meradarzi.pk/terms-and-conditions',
+    locale: 'en_US',
+    type: 'website',
+    images: [{ url: '/og-images/MeraDarzi.jpg', width: 1200, height: 630, alt: 'Mera Darzi Terms & Conditions' }],
+    siteName: 'Mera Darzi',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms & Conditions | Mera Darzi',
+    description: 'Mera Darzi terms and conditions — service ke istemal ke qawaneen aur shartat.',
+    images: ['/og-images/MeraDarzi.jpg'],
   },
 }
 
