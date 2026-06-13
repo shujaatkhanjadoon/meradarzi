@@ -98,6 +98,11 @@ export default function AboutPage() {
             Hum ek choti si team hain jo believe karte hain ke technology
             language ya budget ki wajah se kisi ke liye rokawat nahi banni chahiye.
           </p>
+          <p className="text-sm text-blue-300/70 mt-4">
+            <Link href="/guide/tailor-management-pakistan" className="underline hover:text-blue-200">
+              Complete Guide Padhein →
+            </Link>
+          </p>
           <div className="flex flex-wrap justify-center gap-3 mt-10">
             {['🇵🇰 Made in Pakistan', '👥 500+ Shops', '⭐ 4.8 Rating', '📱 PWA Enabled'].map(tag => (
               <span key={tag} className="bg-white/5 border border-white/10 text-white/70 text-xs font-medium px-4 py-2 rounded-full">

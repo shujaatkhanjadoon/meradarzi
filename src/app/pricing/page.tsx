@@ -63,6 +63,11 @@ export default function PricingPage() {
           <p className="text-blue-200 text-xl max-w-2xl mx-auto leading-relaxed">
             Har budget ke liye plan. Free se shuru karein, grow karte waqt upgrade karein. Koi hidden charges nahi.
           </p>
+          <p className="text-sm text-blue-300 mt-4">
+            <Link href="/guide/tailor-management-pakistan" className="underline hover:text-blue-200">
+              Complete Guide Padhein →
+            </Link>
+          </p>
         </div>
       </div>
 

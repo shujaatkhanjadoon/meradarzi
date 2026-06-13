@@ -218,12 +218,17 @@ export default function HowItWorksPage() {
               4 Simple Steps
             </span>
           </h1>
-          <p className="text-blue-200/80 text-xl max-w-2xl mx-auto leading-relaxed">
-            2 minute mein shuru karein. Koi training nahi chahiye.
-            Sirf teen cheezein chahiye: ek phone, apna mobile number, aur aapki dukaan ka naam.
-          </p>
+    <p className="text-blue-200/80 text-xl max-w-2xl mx-auto leading-relaxed">
+      2 minute mein shuru karein. Koi training nahi chahiye.
+      Sirf teen cheezein chahiye: ek phone, apna mobile number, aur aapki dukaan ka naam.
+    </p>
+    <p className="text-sm text-blue-300/70 mt-4">
+      <Link href="/guide/tailor-management-pakistan" className="underline hover:text-blue-200">
+        Complete Guide Padhein →
+      </Link>
+    </p>
 
-          {/* Step indicators */}
+    {/* Step indicators */}
           <div className="flex items-center justify-center gap-4 mt-12">
             {['Account', 'Order', 'Assign', 'Deliver'].map((label, i) => (
               <div key={label} className="flex items-center gap-4">

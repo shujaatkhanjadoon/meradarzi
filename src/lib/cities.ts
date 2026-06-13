@@ -737,10 +737,61 @@ function longTailKeywords(city: City): string[] {
   ]
 }
 
+function cityBlogPosts(city: City): { slug: string; title: string }[] {
+  const map: Record<string, { slug: string; title: string }[]> = {
+    "Lahore": [
+      { slug: "best-tailor-software-lahore", title: "Lahore Mein Best Tailor Software 2026" },
+      { slug: "tailor-business-kaise-badhayein-5-tips", title: "Tailor Business Kaise Badhayein — 5 Tips" },
+      { slug: "best-tailor-management-app-pakistan-2026", title: "Pakistan Mein Best Tailor Management App 2026" },
+    ],
+    "Karachi": [
+      { slug: "tailor-app-karachi-guide", title: "Karachi Mein Tailor App Kaise Use Karein" },
+      { slug: "gahakon-ka-record-kaise-rakhein-digital-solution", title: "Gahakon Ka Record Kaise Rakhein — Digital Solution" },
+      { slug: "order-tracking-system-for-tailors", title: "Order Tracking System For Tailors" },
+    ],
+    "Islamabad": [
+      { slug: "tailor-management-software-islamabad", title: "Islamabad Mein Tailor Management Software" },
+      { slug: "pakistan-mein-boutique-management-app", title: "Pakistan Mein Boutique Management App" },
+      { slug: "ladies-tailor-app-pakistan", title: "Ladies Tailor Ke Liye Best App Pakistan" },
+    ],
+    "Rawalpindi": [
+      { slug: "tailor-shop-ko-digital-kaise-banayein", title: "Tailor Shop Ko Digital Kaise Banayein" },
+      { slug: "tailor-shop-record-keeping-paper-vs-digital", title: "Tailor Shop Record Keeping — Paper vs Digital" },
+      { slug: "darzi-ke-liye-zaroori-apps", title: "Darzi Ke Liye 10 Zaroori Apps" },
+    ],
+    "Faisalabad": [
+      { slug: "karigar-management-tips-for-tailor-shops", title: "Karigar Management Tips For Tailor Shops" },
+      { slug: "tailor-shop-billing-software-free-comparison-2026", title: "Tailor Shop Billing Software Free — Comparison 2026" },
+      { slug: "order-tracking-system-for-tailors", title: "Order Tracking System For Tailors" },
+    ],
+    "Peshawar": [
+      { slug: "urdu-mein-tailor-management-software", title: "Urdu Mein Tailor Management Software" },
+      { slug: "tailor-shop-ko-digital-kaise-banayein", title: "Tailor Shop Ko Digital Kaise Banayein" },
+      { slug: "darzi-ke-liye-zaroori-apps", title: "Darzi Ke Liye 10 Zaroori Apps" },
+    ],
+    "Quetta": [
+      { slug: "urdu-mein-tailor-management-software", title: "Urdu Mein Tailor Management Software" },
+      { slug: "tailor-shop-ko-digital-kaise-banayein", title: "Tailor Shop Ko Digital Kaise Banayein" },
+      { slug: "darzi-ke-liye-zaroori-apps", title: "Darzi Ke Liye 10 Zaroori Apps" },
+    ],
+    "Multan": [
+      { slug: "tailor-shop-record-keeping-paper-vs-digital", title: "Tailor Shop Record Keeping — Paper vs Digital" },
+      { slug: "tailor-shop-billing-software-free-comparison-2026", title: "Tailor Shop Billing Software Free — Comparison 2026" },
+      { slug: "salwar-kameez-measurements-kaise-lein-digital-guide", title: "Salwar Kameez Measurements Kaise Lein — Digital Guide" },
+    ],
+  }
+  return map[city.name] ?? [
+    { slug: "tailor-shop-ko-digital-kaise-banayein", title: "Tailor Shop Ko Digital Kaise Banayein" },
+    { slug: "tailor-shop-billing-software-free-comparison-2026", title: "Tailor Shop Billing Software Free — Comparison 2026" },
+    { slug: "tailor-business-kaise-badhayein-5-tips", title: "Tailor Business Kaise Badhayein — 5 Tips" },
+  ]
+}
+
 export function getCityFAQs(city: City) { return faqs(city) }
 export function getCityPainPoints(city: City) { return painPoints(city) }
 export function getNearbyCities(city: City, all: City[] = CITIES) { return nearbyCities(city, all) }
 export function getCityKeywords(city: City) { return [...city.keywords, ...longTailKeywords(city)] }
+export function getCityBlogPosts(city: City) { return cityBlogPosts(city) }
 
 // ── Province Grouping ──────────────────────────────────────────
 

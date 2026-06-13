@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CITIES } from "@/lib/cities";
-import { BLOG_POSTS } from "@/lib/blog";
+import { BLOG_POSTS, BLOG_CATEGORIES } from "@/lib/blog";
 
 const BASE_URL = "https://www.meradarzi.pk";
 
@@ -33,5 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
   }));
 
-  return [...staticPages, ...cityPages, ...blogPages];
+  const categoryPages = BLOG_CATEGORIES.map((cat) => ({
+    url: `${BASE_URL}/blog/category/${cat.slug}`,
+    priority: 0.6,
+    changeFrequency: "weekly" as const,
+  }));
+
+  return [...staticPages, ...cityPages, ...blogPages, ...categoryPages];
 }

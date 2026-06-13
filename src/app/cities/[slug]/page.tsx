@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { CheckCircle2, ArrowRight, Smartphone, Package, Users, CreditCard, AlertTriangle, MapPin } from "lucide-react";
 import { BreadcrumbSchema, LocalBusinessSchema, WebPageSchema } from "@/components/seo/JsonLd";
 import { FAQ } from "@/components/landing/InteractiveComponents";
-import { CITIES, getCityFAQs, getCityPainPoints, getNearbyCities, getCityKeywords } from "@/lib/cities";
+import { CITIES, getCityFAQs, getCityPainPoints, getNearbyCities, getCityKeywords, getCityBlogPosts } from "@/lib/cities";
 
 export function generateStaticParams() {
   return CITIES.map((c) => ({ slug: c.slug }));
@@ -55,6 +55,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
   const cityFaqs = getCityFAQs(city);
   const painPoints = getCityPainPoints(city);
   const nearby = getNearbyCities(city);
+  const blogPosts = getCityBlogPosts(city);
 
   return (
     <>
@@ -179,6 +180,43 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
             </div>
           </div>
         </section>
+
+        {/* Related Blog Posts */}
+        {blogPosts.length > 0 && (
+          <section className="py-10 lg:py-16 bg-white">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <div className="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2 rounded-full mb-5 uppercase tracking-wide">
+                  Related Reads
+                </div>
+                <h2 className="text-3xl font-black text-slate-900 mb-4">
+                  {city.name} Ke Tailors Ke Liye Mazid Articles
+                </h2>
+                <p className="text-slate-500 max-w-lg mx-auto">
+                  Yeh articles apni tailor shop ko digital aur profitable banane mein madad karenge.
+                </p>
+              </div>
+              <div className="space-y-4">
+                {blogPosts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="block bg-slate-50 rounded-2xl p-5 border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all group"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+                          {post.title}
+                        </h3>
+                      </div>
+                      <ArrowRight size={18} className="text-slate-300 group-hover:text-blue-500 shrink-0 mt-1 transition-colors" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* FAQ */}
         <section className="py-10 lg:py-16 bg-slate-50">
