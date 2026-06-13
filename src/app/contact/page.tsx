@@ -39,7 +39,7 @@ export default function ContactPage() {
       <WebPageSchema
         title="Contact Mera Darzi - Tailor Management Software Support"
         description="Get in touch with Mera Darzi support team via WhatsApp, email, or contact form."
-        datePublished="2026-01-01"
+        datePublished="2026-01-05"
         dateModified="2026-06-11"
       />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20">
@@ -55,6 +55,7 @@ export default function ContactPage() {
 
           {/* Contact info */}
           <div className="lg:col-span-2 space-y-4">
+            <h2 className="text-xl font-bold text-slate-900 mb-2">Contact Information</h2>
             {[
               {
                 icon:  MessageCircle,
@@ -113,6 +114,7 @@ export default function ContactPage() {
 
           {/* Form */}
           <div className="lg:col-span-3 bg-white rounded-3xl p-7 border border-slate-200 shadow-sm">
+            <h2 className="text-xl font-bold text-slate-900 mb-4">Send Us a Message</h2>
             <ContactForm />
           </div>
         </div>

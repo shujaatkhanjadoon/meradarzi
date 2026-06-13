@@ -16,9 +16,9 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { href: '/#features', label: 'Features', icon: Sparkles },
-  { href: '/#how-it-works', label: 'How It Works', icon: Play },
-  { href: '/#pricing', label: 'Pricing', icon: Tag },
+  { href: '/features', label: 'Features', icon: Sparkles },
+  { href: '/how-it-works', label: 'How It Works', icon: Play },
+  { href: '/pricing', label: 'Pricing', icon: Tag },
   { href: '#', label: 'Cities', hasDropdown: true, icon: MapPin },
   { href: '/blog', label: 'Blog', icon: FileText },
   { href: '/about', label: 'About', icon: Info },
@@ -133,13 +133,13 @@ export function Navbar() {
 
   return (
     <nav className={cn(
-      'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+      'fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color] duration-300',
       scrolled
         ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100'
         : 'bg-transparent'
     )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-18">
+        <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
@@ -284,11 +284,11 @@ export function Navbar() {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link href="https://app.meradarzi.pk/" target="_blank"
+            <Link href="https://app.meradarzi.pk/" target="_blank" rel="noopener"
               className="text-sm font-semibold text-slate-700 hover:text-blue-600 px-4 py-2 transition-colors">
               Login
             </Link>
-            <Link href="https://app.meradarzi.pk/" target="_blank"
+            <Link href="https://app.meradarzi.pk/" target="_blank" rel="noopener"
               className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 active:scale-95">
               Free Shuru Karein →
             </Link>
@@ -426,12 +426,12 @@ export function Navbar() {
 
         {/* Bottom CTA area */}
         <div className="px-4 pb-4 pt-3 border-t border-slate-100 bg-white space-y-2.5 safe-bottom">
-          <Link href="https://app.meradarzi.pk/" target="_blank"
+          <Link href="https://app.meradarzi.pk/" target="_blank" rel="noopener"
             className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-sm min-h-[48px] transition-all shadow-lg shadow-blue-600/25 active:scale-[0.98]">
             Free Shuru Karein
             <ArrowRight size={16} />
           </Link>
-          <Link href="https://app.meradarzi.pk/" target="_blank"
+          <Link href="https://app.meradarzi.pk/" target="_blank" rel="noopener"
             className="w-full flex items-center justify-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-700 py-2.5 transition-colors rounded-xl hover:bg-slate-50 min-h-[44px]">
             <LogIn size={16} />
             Login

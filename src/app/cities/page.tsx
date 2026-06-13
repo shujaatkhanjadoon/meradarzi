@@ -5,7 +5,7 @@ import { CITIES, PROVINCES } from "@/lib/cities";
 import { BreadcrumbSchema, WebPageSchema } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Tailor Management Software in Pakistani Cities | Mera Darzi",
+  title: "Tailor Management Software in Pakistani Cities",
   description:
     "Mera Darzi is available in all major Pakistani cities including Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, Peshawar, Multan and more. Find tailor management software for your city.",
   keywords: [
@@ -62,7 +62,7 @@ export default function CitiesIndexPage() {
       <WebPageSchema
         title="Tailor Management Software in Pakistani Cities | Mera Darzi"
         description="Mera Darzi is available in all major Pakistani cities. Find tailor management software for your city."
-        datePublished="2026-01-01"
+        datePublished="2026-03-01"
         dateModified="2026-06-11"
       />
       <script

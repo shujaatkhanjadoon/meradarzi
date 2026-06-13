@@ -635,6 +635,115 @@ export const CITIES: City[] = [
   },
 ]
 
+// ── Computed City Data ─────────────────────────────────────────
+
+function painPoints(city: City): string[] {
+  const map: Record<string, string[]> = {
+    "Lahore": [
+      "Lahore mein tailor shops ki competition bahut zyada hai — digital management aapko edge deta hai",
+      "Lahore ke gahak time-conscious hain — unhe baar baar shop aane ki zaroorat nahi, QR tracking se khud status check karte hain",
+      "5000+ tailors in Lahore — manual diary system mein galtiyan hoti hain jo Mera Darzi automatically fix karta hai",
+    ],
+    "Karachi": [
+      "Karachi ke gahak diverse hain — har customer ka measurement, order type, aur payment method alag hai. Manual system mein confusion aam hai",
+      "Karachi mein network connectivity har jagah consistent nahi — offline app zaroori hai jo bina internet ke kaam kare",
+      "Bara market se Defence tak — Karachi ke tailors ko ek aise system ki zaroorat hai jo mobile par hi sab kare",
+    ],
+    "Islamabad": [
+      "Islamabad ki boutique culture strong hai — customers style-conscious hain aur digital solutions expect karte hain",
+      "Islamabad ke gahak QR tracking pasand karte hain — unhe app mein hi order status dekhne ki sahulat chahiye",
+    ],
+    "Rawalpindi": [
+      "Rawalpindi ke tailors traditional diary system use karte hain jo time-consuming aur error-prone hai",
+      "Rawalpindi mein chhoti shops hain jo free aur easy-to-use solution chahti hain",
+    ],
+    "Faisalabad": [
+      "Faisalabad textile city hai — yahan tailors ko bulk orders aur multiple karigars handle karne ka system chahiye",
+      "Faisalabad mein stitching orders ka volume zyada hai — manual management mushkil ho jata hai",
+    ],
+    "Peshawar": [
+      "Peshawar mein tailor shops offline rehti hain — ek app jo bina internet ke kaam kare, zaroori hai",
+      "Peshawar ke tailors Urdu script mein records rakhna pasand karte hain — Mera Darzi Urdu mein available hai",
+    ],
+    "Multan": [
+      "Multan ke gahak traditional tailoring prefer karte hain — unke orders aur measurements ka record digital hona chahiye",
+      "Multan mein small shops hain jo affordable solution chahti hain — Free plan perfect hai",
+    ],
+    "Quetta": [
+      "Quetta mein internet connectivity ek challenge hai — offline-first app sirf Mera Darzi hai",
+      "Quetta ke darzis ko ek reliable system chahiye jo power failure aur network issues ke bawajood kaam kare",
+    ],
+  }
+  const fallback: Record<string, string[]> = {
+    "Punjab": [
+      `${city.name} ke tailors ab bhi diary aur hisaab mein uljhe hain — Mera Darzi sab kuch digital karta hai`,
+      `${city.name} mein competition barh raha hai — jo shop digital hogi woh zyada customers legi`,
+    ],
+    "Sindh": [
+      `${city.name} mein network connectivity har jagah consistent nahi — offline app zaroori hai`,
+      `${city.name} ke gahak order status track karna chahte hain — QR tracking se wo khud check kar lein`,
+    ],
+    "Khyber Pakhtunkhwa": [
+      `${city.name} mein offline rehne wale tailors ke liye ek app jo bina internet ke kaam kare, zaroori hai`,
+      `${city.name} ke tailors Urdu mein records rakhna pasand karte hain — Mera Darzi Urdu mein available hai`,
+    ],
+    "Balochistan": [
+      `${city.name} mein internet aur power ke issues hain — offline-first app jo bina electricity ke bhi kaam kare, zaroori hai`,
+      `${city.name} ke darzis ko ek reliable digital system chahiye jo har halat mein kaam kare`,
+    ],
+    "Islamabad Capital Territory": [
+      `${city.name} ke customers digital solutions expect karte hain — unki umeedon par khara utarna zaroori hai`,
+      `${city.name} mein boutique culture strong hai — order tracking aur measurement photos zaroori features hain`,
+    ],
+  }
+  return map[city.name] ?? (fallback[city.province] ?? fallback["Punjab"])
+}
+
+function faqs(city: City) {
+  return [
+    {
+      q: `Is Mera Darzi available in ${city.name}?`,
+      a: `Yes, Mera Darzi is fully available in ${city.name}, ${city.province}. ${city.shops} tailoring shops and boutiques in ${city.name} are already using it to manage orders, customers, and payments. Sign up free — no credit card needed.`,
+    },
+    {
+      q: `Does Mera Darzi work offline in ${city.name}?`,
+      a: `Yes. Mera Darzi is built as an offline-first app specifically for Pakistan's internet conditions. If you're in an area of ${city.name} with weak connectivity, the app works fully offline and syncs automatically when the internet is available.`,
+    },
+    {
+      q: `How much does Mera Darzi cost in ${city.name}?`,
+      a: `Same pricing nationwide — Free (30 orders/month), Professional Rs. 499/month (or Rs. 4,990/year), Business Rs. 999/month (or Rs. 9,990/year). All plans include offline mode, customer management, and payment tracking. Free plan is perfect to start.`,
+    },
+    {
+      q: `How do I sign up for Mera Darzi in ${city.name}?`,
+      a: `Signing up is easy. Go to app.meradarzi.pk, enter your mobile number and shop name, and you're ready. The Free plan starts immediately — no credit card, no commitment, no hidden charges.`,
+    },
+  ]
+}
+
+function nearbyCities(city: City, all: City[]): City[] {
+  return all.filter(c => c.province === city.province && c.slug !== city.slug).slice(0, 6)
+}
+
+function longTailKeywords(city: City): string[] {
+  return [
+    `best tailor management app in ${city.name}`,
+    `tailor shop billing software ${city.name}`,
+    `darzi kaam record app ${city.name}`,
+    `${city.name} tailor shop management system`,
+    `boutique management app ${city.name}`,
+    `tailor stitching order app ${city.name}`,
+    `${city.name} darzi software`,
+    `measurement app for tailors ${city.name}`,
+  ]
+}
+
+export function getCityFAQs(city: City) { return faqs(city) }
+export function getCityPainPoints(city: City) { return painPoints(city) }
+export function getNearbyCities(city: City, all: City[] = CITIES) { return nearbyCities(city, all) }
+export function getCityKeywords(city: City) { return [...city.keywords, ...longTailKeywords(city)] }
+
+// ── Province Grouping ──────────────────────────────────────────
+
 export const CITIES_BY_PROVINCE = CITIES.reduce(
   (acc, city) => {
     acc[city.province] = acc[city.province] ?? []

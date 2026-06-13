@@ -1,5 +1,6 @@
 import { BreadcrumbSchema, WebPageSchema } from '@/components/seo/JsonLd'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions',
@@ -116,8 +117,8 @@ Refunds: See our Refund Policy page.`,
       <WebPageSchema
         title="Terms & Conditions | Mera Darzi"
         description="Mera Darzi terms and conditions — service ke istemal ke qawaneen aur shartat."
-        datePublished="2026-01-01"
-        dateModified="2026-06-11"
+        datePublished="2026-01-10"
+        dateModified="2026-05-13"
       />
       <div className="bg-white border-b border-slate-100 py-16 px-4">
         <div className="max-w-3xl mx-auto">
@@ -141,6 +142,11 @@ Refunds: See our Refund Policy page.`,
             </div>
           </div>
         ))}
+        <div className="mt-10 pt-8 border-t border-slate-200 flex flex-wrap gap-3 text-sm">
+          <Link href="/privacy-policy" className="text-blue-600 hover:underline font-medium">Privacy Policy</Link>
+          <span className="text-slate-300">·</span>
+          <Link href="/refund-policy" className="text-blue-600 hover:underline font-medium">Refund Policy</Link>
+        </div>
       </div>
     </div>
   )

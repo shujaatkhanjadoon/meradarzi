@@ -1,3 +1,34 @@
+export interface BlogCategory {
+  slug: string
+  name: string
+  description: string
+}
+
+export const BLOG_CATEGORIES: BlogCategory[] = [
+  { slug: "getting-started", name: "Getting Started", description: "New to Mera Darzi? Start here — step-by-step guides to set up and run your tailor shop digitally." },
+  { slug: "reviews", name: "Reviews", description: "Honest comparisons and reviews of tailor management apps and tools for Pakistani darzis." },
+  { slug: "tips", name: "Tips", description: "Practical tips to improve your tailor shop operations, customer service, and daily workflow." },
+  { slug: "guides", name: "Guides", description: "In-depth guides on measurements, order management, and running a digital tailor shop." },
+  { slug: "business", name: "Business", description: "Grow your tailoring business with strategies on marketing, retention, and digital transformation." },
+  { slug: "features", name: "Features", description: "Deep dives into Mera Darzi features — order tracking, karigar management, payments, and more." },
+  { slug: "comparison", name: "Comparison", description: "Mera Darzi vs traditional methods — see the difference in cost, time, and convenience." },
+  { slug: "use-cases", name: "Use Cases", description: "How different types of tailoring businesses use Mera Darzi — boutiques, home-based darzis, workshops." },
+]
+
+export function getCategoryByPost(post: BlogPost): BlogCategory | undefined {
+  return BLOG_CATEGORIES.find(c => c.name === post.category)
+}
+
+export function getCategoryBySlug(slug: string): BlogCategory | undefined {
+  return BLOG_CATEGORIES.find(c => c.slug === slug)
+}
+
+export function getPostsByCategory(slug: string): BlogPost[] {
+  const cat = getCategoryBySlug(slug)
+  if (!cat) return []
+  return BLOG_POSTS.filter(p => p.category === cat.name)
+}
+
 export interface BlogPost {
   slug: string
   title: string

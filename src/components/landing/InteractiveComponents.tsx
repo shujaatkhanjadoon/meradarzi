@@ -188,8 +188,8 @@ export function PricingCards() {
             aria-checked={!annual}
             aria-pressed={!annual}
             className={cn(
-              'px-5 py-2 rounded-full text-sm font-semibold transition-all',
-              !annual ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'
+              'px-5 py-3 rounded-full text-sm font-semibold transition-all',
+               !annual ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'
             )}
           >
             🌱 Monthly
@@ -200,8 +200,8 @@ export function PricingCards() {
             aria-checked={annual}
             aria-pressed={annual}
             className={cn(
-              'px-5 py-2 rounded-full text-sm font-semibold transition-all',
-              annual ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'
+              'px-5 py-3 rounded-full text-sm font-semibold transition-all',
+               annual ? 'bg-white shadow-sm text-slate-800' : 'text-slate-500'
             )}
           >
             👑 Yearly
@@ -267,6 +267,7 @@ export function PricingCards() {
                 <Link
                   href="https://app.meradarzi.pk/"
                   target="_blank"
+                  rel="noopener"
                   className={cn(
                     'block w-full text-center font-bold py-3.5 rounded-2xl text-sm transition-all active:scale-95',
                     plan.ctaStyle
@@ -350,7 +351,7 @@ export function StatsSection() {
   ]
 
   return (
-    <Section className="py-20 lg:py-24 bg-linear-to-br from-blue-600 to-blue-800 relative overflow-hidden">
+    <Section className="py-10 lg:py-16 bg-linear-to-br from-blue-600 to-blue-800 relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-300 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />

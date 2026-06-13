@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CheckCircle2, ArrowRight, Smartphone, Package, Users, CreditCard } from "lucide-react";
+import { CheckCircle2, ArrowRight, Smartphone, Package, Users, CreditCard, AlertTriangle, MapPin } from "lucide-react";
 import { BreadcrumbSchema, LocalBusinessSchema, WebPageSchema } from "@/components/seo/JsonLd";
-import { CITIES } from "@/lib/cities";
+import { FAQ } from "@/components/landing/InteractiveComponents";
+import { CITIES, getCityFAQs, getCityPainPoints, getNearbyCities, getCityKeywords } from "@/lib/cities";
 
 export function generateStaticParams() {
   return CITIES.map((c) => ({ slug: c.slug }));
@@ -15,12 +16,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!city) return { title: "City Not Found" };
 
   return {
-    title: `Best Tailor Management Software in ${city.name} | Mera Darzi`,
-    description: city.description.length > 157 ? city.description.slice(0, 157) + '...' : city.description,
-    keywords: city.keywords,
+    title: `Best Tailor Management Software in ${city.name}`,
+    description: city.description.length > 160 ? city.description.slice(0, 160) : city.description,
+    keywords: getCityKeywords(city),
     openGraph: {
       title: `Mera Darzi - Best Tailor Management Software in ${city.name}`,
-      description: city.description.length > 157 ? city.description.slice(0, 157) + '...' : city.description,
+      description: city.description.length > 160 ? city.description.slice(0, 160) : city.description,
       url: `https://www.meradarzi.pk/cities/${city.slug}`,
       locale: "en_US",
       type: "website",
@@ -51,13 +52,17 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
     { icon: Smartphone, title: "Measurements + Photos", desc: "Gahak ke nap aur kapra photos ek jagah. Kabhi bhoolo nahi kaun si shirt kis ki hai." },
   ];
 
+  const cityFaqs = getCityFAQs(city);
+  const painPoints = getCityPainPoints(city);
+  const nearby = getNearbyCities(city);
+
   return (
     <>
       <LocalBusinessSchema city={city.name} province={city.province} shops={city.shops} />
       <WebPageSchema
         title={`Best Tailor Management Software in ${city.name} | Mera Darzi`}
-        description={city.description.length > 157 ? city.description.slice(0, 157) + '...' : city.description}
-        datePublished="2026-01-01"
+        description={city.description.length > 160 ? city.description.slice(0, 160) : city.description}
+        datePublished="2026-03-01"
         dateModified="2026-06-11"
       />
       <BreadcrumbSchema
@@ -69,6 +74,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
       />
 
       <div className="pt-16">
+        {/* Hero */}
         <section className="bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 py-24 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold px-4 py-2 rounded-full mb-6">
@@ -87,6 +93,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
               <Link
                 href="https://app.meradarzi.pk/"
                 target="_blank"
+                rel="noopener"
                 className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-2xl text-base transition-all shadow-xl shadow-blue-900/50"
               >
                 Free Shuru Karein
@@ -102,7 +109,8 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           </div>
         </section>
 
-        <section className="py-20 bg-white">
+        {/* Features */}
+        <section className="py-10 lg:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-14">
               <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">
@@ -126,7 +134,30 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           </div>
         </section>
 
-        <section className="py-20 bg-slate-50">
+        {/* Pain Points */}
+        <section className="py-10 lg:py-16 bg-slate-50">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-xs font-bold px-4 py-2 rounded-full mb-5 uppercase tracking-wide">
+                <AlertTriangle size={14} /> {city.name} Ke Tailors Ki Problems
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-4">
+                Yeh Problems Hain? Mera Darzi Hai Solution
+              </h2>
+            </div>
+            <div className="space-y-4">
+              {painPoints.map((item) => (
+                <div key={item} className="flex items-start gap-3 bg-white rounded-2xl p-5 border border-amber-100">
+                  <AlertTriangle size={20} className="text-amber-500 shrink-0 mt-0.5" />
+                  <p className="text-slate-700 text-sm leading-relaxed">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why */}
+        <section className="py-10 lg:py-16 bg-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-black text-slate-900 text-center mb-10">
               Why Mera Darzi for {city.name}?
@@ -140,7 +171,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
                 `${city.shops}+ shops already using Mera Darzi in ${city.name}`,
                 `Free plan available — 30 orders/month, measurements, payments, cloud backup`,
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3 bg-white rounded-2xl p-4 border border-slate-100">
+                <div key={item} className="flex items-start gap-3 bg-slate-50 rounded-2xl p-4 border border-slate-100">
                   <CheckCircle2 size={20} className="text-green-500 shrink-0 mt-0.5" />
                   <p className="text-slate-600 text-sm">{item}</p>
                 </div>
@@ -149,7 +180,49 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           </div>
         </section>
 
-        <section className="py-20 bg-white text-center px-4">
+        {/* FAQ */}
+        <section className="py-10 lg:py-16 bg-slate-50">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <div className="inline-block bg-blue-100 text-blue-700 text-xs font-bold px-4 py-2 rounded-full mb-5 uppercase tracking-wide">
+                FAQ
+              </div>
+              <h2 className="text-3xl font-black text-slate-900 mb-4">
+                {city.name} Mein Mera Darzi Ke Baare Mein Sawalat
+              </h2>
+            </div>
+            <FAQ faqs={cityFaqs} />
+          </div>
+        </section>
+
+        {/* Nearby Cities */}
+        {nearby.length > 0 && (
+          <section className="py-10 lg:py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-3xl font-black text-slate-900 mb-4">
+                Mera Darzi in Other Cities Near {city.name}
+              </h2>
+              <p className="text-slate-500 mb-8 max-w-lg mx-auto">
+                Mera Darzi is available across Pakistan. Check these nearby cities too:
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {nearby.map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/cities/${c.slug}`}
+                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 font-semibold px-4 py-2.5 rounded-xl text-sm transition-all border border-slate-200 hover:border-blue-200"
+                  >
+                    <MapPin size={14} />
+                    {c.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* CTA */}
+        <section className="py-10 lg:py-16 bg-white text-center px-4 border-t border-slate-100">
           <h2 className="text-3xl font-black text-slate-900 mb-4">
             {city.name} Mein Aaj Hi Shuru Karein
           </h2>
@@ -160,6 +233,7 @@ export default async function CityPage({ params }: { params: Promise<{ slug: str
           <Link
             href="https://app.meradarzi.pk/"
             target="_blank"
+            rel="noopener"
             className="inline-flex items-center gap-2 bg-blue-600 text-white font-bold px-10 py-4 rounded-2xl hover:bg-blue-700 transition-all"
           >
             Free Account Banayein <ArrowRight size={18} />

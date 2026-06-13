@@ -38,8 +38,8 @@ export default function RefundPolicyPage() {
       <WebPageSchema
         title="Refund Policy | Mera Darzi"
         description="Mera Darzi refund policy — 7-day money-back guarantee."
-        datePublished="2026-01-01"
-        dateModified="2026-06-11"
+        datePublished="2026-01-10"
+        dateModified="2026-05-13"
       />
       <div className="bg-white border-b border-slate-100 py-16 px-4">
         <div className="max-w-3xl mx-auto">
@@ -143,6 +143,12 @@ export default function RefundPolicyPage() {
             💬 Questions? <Link href="/contact" className="underline">Contact us</Link> —
             hum 24 ghante ke andar reply karenge.
           </p>
+        </div>
+
+        <div className="mt-6 pt-6 border-t border-slate-200 flex flex-wrap gap-3 text-sm">
+          <Link href="/terms-and-conditions" className="text-blue-600 hover:underline font-medium">Terms & Conditions</Link>
+          <span className="text-slate-300">·</span>
+          <Link href="/privacy-policy" className="text-blue-600 hover:underline font-medium">Privacy Policy</Link>
         </div>
       </div>
     </div>

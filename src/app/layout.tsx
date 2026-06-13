@@ -87,8 +87,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.meradarzi.pk",
     languages: {
-      "en-PK": "https://www.meradarzi.pk",
-      "ur-PK": "https://www.meradarzi.pk",
       "x-default": "https://www.meradarzi.pk",
     },
   },
@@ -140,6 +138,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <>
+          <link rel="preconnect" href="https://app.meradarzi.pk" />
           <OrganizationSchema />
           <Navbar />
           <main>{children}</main>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react"
-import { BLOG_POSTS } from "@/lib/blog"
+import { ArrowLeft, Calendar, Clock, Tag, ArrowRight } from "lucide-react"
+import { BLOG_POSTS, getCategoryByPost, getPostsByCategory } from "@/lib/blog"
 import { BreadcrumbSchema, WebPageSchema } from "@/components/seo/JsonLd"
 
 export function generateStaticParams() {
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return { title: "Post Not Found" }
 
   return {
-    title: `${post.title} | Mera Darzi Blog`,
+    title: post.title,
     description: post.description.slice(0, 160),
     keywords: post.keywords,
     alternates: {
@@ -52,6 +52,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { slug } = await params
   const post = BLOG_POSTS.find((p) => p.slug === slug)
   if (!post) notFound()
+
+  const cat = getCategoryByPost(post)
+  const relatedPosts = cat ? getPostsByCategory(cat.slug).filter((p) => p.slug !== slug).slice(0, 3) : []
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -108,9 +111,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <header className="mb-10">
           <div className="flex items-center gap-3 mb-4">
-            <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full">
-              {post.category}
-            </span>
+            {cat ? (
+              <Link
+                href={`/blog/category/${cat.slug}`}
+                className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors"
+              >
+                {cat.name}
+              </Link>
+            ) : (
+              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full">
+                {post.category}
+              </span>
+            )}
             <span className="text-xs text-slate-400 flex items-center gap-1">
               <Calendar size={12} />
               {post.datePublished}
@@ -148,17 +160,57 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           ))}
         </div>
 
+        {relatedPosts.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-slate-200">
+            <h2 className="text-xl font-bold text-slate-800 mb-6">Related Posts</h2>
+            <div className="grid sm:grid-cols-3 gap-4">
+              {relatedPosts.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  href={`/blog/${rp.slug}`}
+                  className="group bg-white rounded-2xl p-4 border border-slate-200 hover:border-blue-200 hover:shadow-md transition-all"
+                >
+                  <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full mb-2 inline-block">
+                    {rp.category}
+                  </span>
+                  <h3 className="font-bold text-slate-800 text-sm group-hover:text-blue-600 transition-colors leading-snug mb-2">
+                    {rp.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 line-clamp-2">{rp.description}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mt-12 pt-8 border-t border-slate-200 text-center">
           <h2 className="text-xl font-bold text-slate-800 mb-3">Ready to digitize your shop?</h2>
           <p className="text-slate-500 mb-6">MeraDarzi se apni tailor shop ko digital banayein. Free start.</p>
-          <Link
-            href="https://app.meradarzi.pk/"
-            target="_blank"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white font-bold
-                       px-8 py-3.5 rounded-2xl text-base hover:bg-blue-700 transition-all active:scale-95"
-          >
-            Free Registration — 30 Orders Free
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+            <Link
+              href="https://app.meradarzi.pk/"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 bg-blue-600 text-white font-bold
+                         px-8 py-3.5 rounded-2xl text-base hover:bg-blue-700 transition-all active:scale-95"
+            >
+              Free Registration — 30 Orders Free
+            </Link>
+            <Link
+              href="/features"
+              className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 font-semibold
+                         px-6 py-3.5 rounded-2xl text-sm hover:bg-slate-200 transition-all active:scale-95"
+            >
+              Dekhein Features
+            </Link>
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 font-semibold
+                         px-6 py-3.5 rounded-2xl text-sm hover:bg-slate-200 transition-all active:scale-95"
+            >
+              Dekhein Pricing
+            </Link>
+          </div>
         </div>
       </article>
     </div>
