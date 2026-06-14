@@ -299,12 +299,12 @@ export function PricingCards() {
 // ── FAQ ──────────────────────────────────────────────────────────
 interface FAQItem { q: string; a: string }
 
-export function FAQ({ faqs }: { faqs: FAQItem[] }) {
+export function FAQ({ faqs, showSchema = true }: { faqs: FAQItem[]; showSchema?: boolean }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null)
 
   return (
     <div className="space-y-3">
-      <FAQSchema faqs={faqs} />
+      {showSchema && <FAQSchema faqs={faqs} />}
       {faqs.map((faq, i) => {
         const isOpen = openIdx === i
         return (

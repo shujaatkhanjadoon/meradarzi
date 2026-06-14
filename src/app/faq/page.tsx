@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, HelpCircle, Mail } from 'lucide-react'
 import Image from 'next/image'
 import { FAQ, Section } from '@/components/landing/InteractiveComponents'
-import { BreadcrumbSchema, WebPageSchema, SoftwareAppSchema } from '@/components/seo/JsonLd'
+import { BreadcrumbSchema, WebPageSchema, SoftwareAppSchema, FAQSchema } from '@/components/seo/JsonLd'
 import { FAQS } from '@/lib/data'
 
 export const metadata: Metadata = {
@@ -46,6 +46,7 @@ export default function FAQPage() {
         dateModified="2026-06-11"
       />
       <SoftwareAppSchema />
+      <FAQSchema faqs={FAQS} />
 
       {/* Hero */}
       <div className="bg-linear-to-br from-slate-900 to-blue-950 py-24 px-4">
@@ -74,7 +75,7 @@ export default function FAQPage() {
               <HelpCircle size={20} className="text-blue-600" />
               <h2 className="text-xl font-black text-slate-800">General Questions</h2>
             </div>
-            <FAQ faqs={FAQS.filter(f => ['MeraDarzi kya hai?', 'Kya yeh app bilkul free hai?', 'Agar internet nahi ho to kya hoga?', 'Customers order kaise track karte hain?', 'Kya yeh mobile app hai? Play Store pe milega?', 'Kya yeh Urdu mein chal sakta hai?', 'Kya ek se zyada device pe use kar sakte hain?', 'Data safe hai? Koi aur dekh to nahi sakta?'].includes(f.q))} />
+            <FAQ faqs={FAQS.filter(f => ['MeraDarzi kya hai?', 'Kya yeh app bilkul free hai?', 'Agar internet nahi ho to kya hoga?', 'Customers order kaise track karte hain?', 'Kya yeh mobile app hai? Play Store pe milega?', 'Kya yeh Urdu mein chal sakta hai?', 'Kya ek se zyada device pe use kar sakte hain?', 'Data safe hai? Koi aur dekh to nahi sakta?'].includes(f.q))} showSchema={false} />
           </div>
 
           {/* Category: Payments & Pricing */}
@@ -83,7 +84,7 @@ export default function FAQPage() {
               <span className="text-xl">💰</span>
               <h2 className="text-xl font-black text-slate-800">Payments & Pricing</h2>
             </div>
-            <FAQ faqs={FAQS.filter(f => ['Pakistan mein payment kaise karein?', 'Plan upgrade kaise karein?', 'Cancel kaise karein?', 'Kya yearly plan behtar hai?', 'Koi setup fee ya hidden charges hain?'].includes(f.q))} />
+            <FAQ faqs={FAQS.filter(f => ['Pakistan mein payment kaise karein?', 'Plan upgrade kaise karein?', 'Cancel kaise karein?', 'Kya yearly plan behtar hai?', 'Koi setup fee ya hidden charges hain?'].includes(f.q))} showSchema={false} />
           </div>
 
           {/* Category: Technical */}
@@ -92,7 +93,7 @@ export default function FAQPage() {
               <span className="text-xl">🔧</span>
               <h2 className="text-xl font-black text-slate-800">Technical & Account</h2>
             </div>
-            <FAQ faqs={FAQS.filter(f => ['Kya mobile number ke bina chal sakta hai?', 'Kaise login karein?', 'Kya data export kar sakte hain?', 'Karigar ko kaise assign karein?', 'Kya reports se business samajh sakte hain?'].includes(f.q))} />
+            <FAQ faqs={FAQS.filter(f => ['Kya mobile number ke bina chal sakta hai?', 'Kaise login karein?', 'Kya data export kar sakte hain?', 'Karigar ko kaise assign karein?', 'Kya reports se business samajh sakte hain?'].includes(f.q))} showSchema={false} />
           </div>
 
           <div className="text-center mt-12 p-8 bg-slate-50 rounded-3xl border border-slate-200">

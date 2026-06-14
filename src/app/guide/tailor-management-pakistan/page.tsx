@@ -190,7 +190,6 @@ export default function GuidePage() {
         dateModified="2026-06-13"
       />
       <HowToSchema />
-      <FAQSchema faqs={FAQS} />
 
       {/* Hero */}
       <section className="bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 py-24 px-4">
